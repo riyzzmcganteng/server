@@ -1,7 +1,6 @@
 {
-  "buildCommand": "echo 'Static site'",
-  "outputDirectory": ".",
-  "public": true,
+  "buildCommand": "php build.php",
+  "outputDirectory": "public",
   "headers": [
     {
       "source": "/(.*)",

@@ -1,5 +1,5 @@
 {
-  "buildCommand": "php build.php",
+  "buildCommand": "node build.js",
   "outputDirectory": "public",
   "headers": [
     {

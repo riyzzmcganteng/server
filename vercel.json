@@ -1,9 +1,7 @@
 {
-  "buildCommand": "",
+  "buildCommand": "echo 'Static site'",
   "outputDirectory": ".",
-  "framework": "html",
   "public": true,
-  "cleanUrls": false,
   "headers": [
     {
       "source": "/(.*)",

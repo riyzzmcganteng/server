@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ryzoria SMP | Blue Black</title>
+  <style>
+    :root{
+      --bg:#050816;
+      --bg2:#090d1b;
+      --panel:#0d1328;
+      --panel2:#10172f;
+      --line:rgba(255,255,255,.08);
+      --text:#f4f7ff;
+      --muted:rgba(244,247,255,.68);
+      --blue:#4da3ff;
+      --cyan:#61e1ff;
+      --green:#5bf0a4;
+      --shadow:0 26px 70px rgba(0,0,0,.38);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(1100px 720px at 15% 10%, rgba(77,163,255,.22), transparent 55%),
+        radial-gradient(760px 540px at 82% 18%, rgba(97,225,255,.12), transparent 55%),
+        radial-gradient(900px 640px at 50% 100%, rgba(77,163,255,.10), transparent 58%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .wrap{width:min(1180px, calc(100% - 28px)); margin:0 auto}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:70;
+      background:rgba(5,8,22,.62);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(18px);
+      transition:.25s ease;
+    }
+    .nav.scrolled{background:rgba(5,8,22,.82); box-shadow:0 10px 30px rgba(0,0,0,.2)}
+    .nav-inner{
+      min-height:72px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:12px 0;
+      position:relative;
+    }
+    .brand{display:flex; align-items:center; gap:12px; min-width:0}
+    .logo{
+      width:44px; height:44px; border-radius:15px;
+      display:grid; place-items:center;
+      background:linear-gradient(135deg, var(--blue), var(--cyan));
+      color:#05101d; font-weight:900;
+      box-shadow:0 18px 34px rgba(77,163,255,.25);
+      flex:0 0 auto;
+    }
+    .brand h1{margin:0; font-size:15px; line-height:1; letter-spacing:.08em}
+    .brand p{margin:4px 0 0; color:var(--muted); font-size:11px; letter-spacing:.22em}
+
+    .desktop-menu{display:flex; align-items:center; gap:18px; flex-wrap:wrap}
+    .desktop-menu a{font-size:13px; color:var(--muted); transition:.2s ease}
+    .desktop-menu a:hover{color:var(--text)}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 18px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      font-weight:800;
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
+      cursor:pointer;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.08);
+      border-color:rgba(97,225,255,.22);
+      box-shadow:0 16px 34px rgba(0,0,0,.24);
+    }
+    .btn.primary{
+      border:0;
+      background:linear-gradient(135deg, var(--blue), var(--cyan));
+      color:#06121f;
+      box-shadow:0 18px 30px rgba(77,163,255,.26);
+    }
+    .btn.primary:hover{box-shadow:0 20px 36px rgba(77,163,255,.34)}
+    .btn.ghost{background:rgba(255,255,255,.03)}
+
+    .mobile-more{
+      display:none;
+      width:46px; height:46px;
+      align-items:center; justify-content:center;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      font-size:24px;
+      line-height:1;
+      cursor:pointer;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .mobile-more:hover{transform:translateY(-1px); border-color:rgba(97,225,255,.2)}
+    .mobile-menu{
+      display:none;
+      position:absolute;
+      right:0;
+      top:calc(100% + 8px);
+      width:min(280px, calc(100vw - 20px));
+      padding:10px;
+      border-radius:20px;
+      background:rgba(9,13,27,.92);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 22px 44px rgba(0,0,0,.34);
+      backdrop-filter:blur(18px);
+      opacity:0;
+      transform:translateY(-8px) scale(.98);
+      pointer-events:none;
+      transition:opacity .22s ease, transform .22s ease;
+    }
+    .mobile-menu.open{
+      opacity:1;
+      transform:translateY(0) scale(1);
+      pointer-events:auto;
+    }
+    .mobile-menu a{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 13px;
+      border-radius:14px;
+      color:var(--text);
+      font-size:14px;
+      transition:.18s ease;
+    }
+    .mobile-menu a:hover{background:rgba(255,255,255,.05)}
+    .mobile-menu .small{color:var(--muted); font-size:12px}
+
+    /* HERO */
+    .hero{padding:56px 0 30px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+      align-items:center;
+    }
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 14px;
+      border-radius:999px;
+      border:1px solid rgba(77,163,255,.20);
+      background:rgba(77,163,255,.08);
+      color:#cde6ff;
+      font-size:12px; font-weight:900; letter-spacing:.12em;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background:#47ef95; box-shadow:0 0 0 6px rgba(71,239,149,.08);
+    }
+    .title{
+      margin:18px 0 14px;
+      font-size:clamp(40px, 6vw, 74px);
+      line-height:.95;
+      letter-spacing:-.05em;
+    }
+    .grad{
+      background:linear-gradient(135deg, #fff, #9fd1ff 45%, #60dfff 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .subtitle{
+      margin:0;
+      max-width:62ch;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.7;
+    }
+    .actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:26px}
+
+    .glass{
+      background:linear-gradient(180deg, rgba(16,22,44,.84), rgba(10,14,30,.84));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .glass::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:linear-gradient(135deg, rgba(77,163,255,.16), transparent 38%, rgba(97,225,255,.10) 72%, transparent);
+      pointer-events:none;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+    }
+    .stat{padding:20px; min-height:114px}
+    .stat h3{margin:0; font-size:26px}
+    .stat p{margin:8px 0 0; color:var(--muted); font-size:12px; letter-spacing:.12em; text-transform:uppercase}
+
+    .section{padding:26px 0}
+    .section-head{
+      display:flex; align-items:end; justify-content:space-between; gap:14px;
+      margin-bottom:16px;
+    }
+    .section-head h2{margin:0; font-size:clamp(24px, 3vw, 38px); letter-spacing:-.03em}
+    .section-head span{color:var(--muted); font-size:13px}
+
+    /* IP */
+    .ip-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+    .panel{padding:22px}
+    .panel h3{margin:0 0 10px; font-size:20px}
+    .panel p{margin:0 0 14px; color:var(--muted); line-height:1.7}
+    .info-list{display:grid; gap:10px}
+    .info-item{
+      display:flex; justify-content:space-between; gap:12px;
+      padding:13px 14px; border-radius:16px;
+      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06);
+      font-size:13px;
+    }
+    .info-item b{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+    /* RANKS */
+    .rank-note{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(77,163,255,.08);
+      border:1px solid rgba(77,163,255,.18);
+      color:#cfe7ff;
+      font-size:12px; font-weight:900; letter-spacing:.08em;
+      margin-bottom:14px;
+    }
+    .rank-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+    .rank{
+      padding:22px;
+      border-radius:26px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(17,21,40,.96), rgba(9,12,24,.96));
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+      transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+      min-height:292px;
+    }
+    .rank:hover{
+      transform:translateY(-4px);
+      border-color:rgba(97,225,255,.28);
+      box-shadow:0 28px 65px rgba(0,0,0,.44), 0 0 0 1px rgba(77,163,255,.08);
+    }
+    .rank::before{
+      content:"";
+      position:absolute;
+      right:-18px;
+      bottom:-18px;
+      width:130px;
+      height:130px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(77,163,255,.24), transparent 66%);
+      pointer-events:none;
+      filter:blur(2px);
+    }
+    .top{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      font-size:12px; font-weight:900; letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .popular{
+      background:linear-gradient(135deg, rgba(77,163,255,.22), rgba(97,225,255,.10));
+      border-color:rgba(97,225,255,.22);
+      color:#ffffff;
+      box-shadow:0 0 22px rgba(77,163,255,.16);
+    }
+    .price{font-size:13px; color:#bfe0ff; font-weight:800}
+    .rank h3{margin:16px 0 8px; font-size:24px}
+    .rank ul{margin:14px 0 0; padding:0; list-style:none; display:grid; gap:10px}
+    .rank li{
+      color:var(--muted); font-size:14px; line-height:1.5;
+      display:flex; gap:10px;
+    }
+    .rank li::before{content:"✓"; color:#67f3ba; font-weight:900}
+    .rank-actions{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px}
+    .rank-actions .btn{width:100%; border-radius:16px; padding:12px 14px}
+
+    .mvpplus .badge{color:#9dd3ff}
+    .legends .badge{color:#ffd77c}
+    .mvpplus .rank-title, .legends .rank-title{color:#fff}
+
+    /* Community + footer */
+    .community{display:flex; flex-wrap:wrap; gap:12px}
+    .footer{padding:20px 0 46px; color:var(--muted); font-size:13px}
+
+    /* floating */
+    .top-btn{
+      position:fixed; right:18px; bottom:18px; z-index:75;
+      width:48px; height:48px;
+      border-radius:50%;
+      border:1px solid rgba(97,225,255,.22);
+      background:rgba(8,11,24,.84);
+      color:var(--text);
+      box-shadow:0 18px 30px rgba(0,0,0,.25);
+      display:grid; place-items:center;
+      opacity:0; transform:translateY(10px);
+      pointer-events:none;
+      transition:.25s ease;
+      cursor:pointer;
+    }
+    .top-btn.show{opacity:1; transform:translateY(0); pointer-events:auto}
+    .copy-toast{
+      position:fixed; left:50%; bottom:22px; transform:translateX(-50%) translateY(16px);
+      opacity:0; pointer-events:none; z-index:80;
+      transition:.22s ease;
+    }
+    .copy-toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+
+    /* reveal */
+    .reveal{opacity:0; transform:translateY(16px)}
+    .reveal.in{opacity:1; transform:translateY(0); transition:opacity .7s ease, transform .7s ease}
+
+    @media (max-width: 920px){
+      .hero-grid,.ip-grid,.rank-grid{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr 1fr}
+      .section-head{flex-direction:column; align-items:flex-start}
+    }
+    @media (max-width: 680px){
+      .desktop-menu{display:none}
+      .mobile-more{display:inline-flex}
+      .mobile-menu{display:block}
+    }
+    @media (max-width: 560px){
+      .wrap{width:min(100% - 18px, 1180px)}
+      .hero{padding-top:34px}
+      .title{font-size:42px}
+      .stats{grid-template-columns:1fr}
+      .panel,.rank,.stat{padding:18px}
+      .rank-actions{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <div class="brand">
+        <div class="logo">R</div>
+        <div>
+          <h1>RYZORIA SMP</h1>
+          <p>BLUE BLACK EDITION</p>
+        </div>
+      </div>
+
+      <nav class="desktop-menu" aria-label="Navigasi utama">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#ip">IP</a>
+        <a href="#rank">Rank</a>
+        <a href="#community">Community</a>
+      </nav>
+
+      <a class="btn primary" href="#ip">Play Now</a>
+      <button class="mobile-more" id="menuBtn" aria-label="Buka menu">⋮</button>
+
+      <div class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+        <a href="#dashboard"><span>Dashboard</span><span class="small">↑</span></a>
+        <a href="#ip"><span>IP</span><span class="small">Join</span></a>
+        <a href="#rank"><span>Rank</span><span class="small">Store</span></a>
+        <a href="#community"><span>Community</span><span class="small">Chat</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero reveal" id="dashboard">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> JAVA + BEDROCK • CROSSPLAY</div>
+          <h2 class="title"><span class="grad">SURVIVE.</span><br><span class="grad">BUILD. DOMINATE.</span></h2>
+          <p class="subtitle">
+            Tampilan Ryzoria SMP sekarang lebih clean dengan tema biru-hitam premium. Fokus ke speed, rapi, dan gampang dipakai di HP.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#rank">Lihat Rank</a>
+            <a class="btn" href="#community">Gabung Community</a>
+          </div>
+        </div>
+
+        <div class="stats glass">
+          <div class="stat"><h3>1.21.x</h3><p>Version Support</p></div>
+          <div class="stat"><h3>Online</h3><p>Status Server</p></div>
+          <div class="stat"><h3>24/7</h3><p>Uptime Target</p></div>
+          <div class="stat"><h3>Blue</h3><p>Theme Style</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="ip">
+      <div class="section-head">
+        <h2>How to Join</h2>
+        <span>Java port disembunyikan, Bedrock tetap tampil</span>
+      </div>
+      <div class="ip-grid">
+        <div class="glass panel">
+          <h3>Java Edition</h3>
+          <p>Untuk PC / laptop. Tinggal copy IP lalu masuk ke menu multiplayer.</p>
+          <div class="info-list">
+            <div class="info-item"><span>IP Address</span><b>ryzoriasmp.my.id</b></div>
+            <div class="info-item"><span>Version</span><b>1.18.2 - 1.21.x</b></div>
+          </div>
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+            <button class="btn" data-copy="ryzoriasmp.my.id">Copy Java IP</button>
+          </div>
+        </div>
+
+        <div class="glass panel">
+          <h3>Bedrock Edition</h3>
+          <p>Untuk HP / console. Crossplay tetap jalan.</p>
+          <div class="info-list">
+            <div class="info-item"><span>IP Address</span><b>ryzoriasmp.my.id</b></div>
+            <div class="info-item"><span>Version</span><b>1.20+</b></div>
+            <div class="info-item"><span>Port</span><b>25632</b></div>
+          </div>
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+            <button class="btn" data-copy="ryzoriasmp.my.id">Copy Bedrock IP</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section reveal" id="rank">
+      <div class="section-head">
+        <h2>Rank Store</h2>
+        <span>Harga ramah, fitur tetap pas</span>
+      </div>
+      <div class="rank-note">★ VIP mulai 25K • MVP+ dan Legends tetap populer</div>
+
+      <div class="rank-grid">
+        <article class="rank">
+          <div class="top">
+            <div class="badge">VIP</div>
+            <div class="price">25K</div>
+          </div>
+          <h3 class="rank-title">VIP</h3>
+          <ul>
+            <li>2 Homes</li>
+            <li>Kit VIP sederhana</li>
+            <li>Claim bonus kecil</li>
+            <li>Color chat basic</li>
+            <li>Priority queue ringan</li>
+          </ul>
+          <div class="rank-actions">
+            <a class="btn primary" href="https://wa.me/6285602052384?text=Halo%20saya%20mau%20beli%20rank%20VIP%20Ryzoria%20SMP" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="btn ghost" href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer">Discord Ticket</a>
+          </div>
+        </article>
+
+        <article class="rank">
+          <div class="top">
+            <div class="badge">VIP+</div>
+            <div class="price">35K</div>
+          </div>
+          <h3 class="rank-title">VIP+</h3>
+          <ul>
+            <li>Semua VIP</li>
+            <li>3 Homes</li>
+            <li>Kit lebih rapi</li>
+            <li>Extra /hat dan /feed</li>
+            <li>Tag warna kecil</li>
+          </ul>
+          <div class="rank-actions">
+            <a class="btn primary" href="https://wa.me/6285602052384?text=Halo%20saya%20mau%20beli%20rank%20VIP%2B%20Ryzoria%20SMP" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="btn ghost" href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer">Discord Ticket</a>
+          </div>
+        </article>
+
+        <article class="rank">
+          <div class="top">
+            <div class="badge">MVP</div>
+            <div class="price">55K</div>
+          </div>
+          <h3 class="rank-title">MVP</h3>
+          <ul>
+            <li>Semua VIP+</li>
+            <li>4 Homes</li>
+            <li>Kit MVP standar</li>
+            <li>Claim bonus menengah</li>
+            <li>Priority queue sedang</li>
+          </ul>
+          <div class="rank-actions">
+            <a class="btn primary" href="https://wa.me/6285602052384?text=Halo%20saya%20mau%20beli%20rank%20MVP%20Ryzoria%20SMP" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="btn ghost" href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer">Discord Ticket</a>
+          </div>
+        </article>
+
+        <article class="rank mvpplus">
+          <div class="top">
+            <div class="badge popular">Popular</div>
+            <div class="price">75K</div>
+          </div>
+          <h3 class="rank-title">MVP+</h3>
+          <ul>
+            <li>Semua MVP</li>
+            <li>5 Homes</li>
+            <li>Extra key ringan</li>
+            <li>Particle tipis</li>
+            <li>Kit MVP+ yang lebih enak</li>
+          </ul>
+          <div class="rank-actions">
+            <a class="btn primary" href="https://wa.me/6285602052384?text=Halo%20saya%20mau%20beli%20rank%20MVP%2B%20Ryzoria%20SMP" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="btn ghost" href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer">Discord Ticket</a>
+          </div>
+        </article>
+
+        <article class="rank">
+          <div class="top">
+            <div class="badge">Elite</div>
+            <div class="price">95K</div>
+          </div>
+          <h3 class="rank-title">Elite</h3>
+          <ul>
+            <li>Semua MVP+</li>
+            <li>6 Homes</li>
+            <li>Nick color</li>
+            <li>Cosmetic access</li>
+            <li>Daily bonus kecil</li>
+          </ul>
+          <div class="rank-actions">
+            <a class="btn primary" href="https://wa.me/6285602052384?text=Halo%20saya%20mau%20beli%20rank%20Elite%20Ryzoria%20SMP" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="btn ghost" href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer">Discord Ticket</a>
+          </div>
+        </article>
+
+        <article class="rank">
+          <div class="top">
+            <div class="badge">Elite+</div>
+            <div class="price">115K</div>
+          </div>
+          <h3 class="rank-title">Elite+</h3>
+          <ul>
+            <li>Semua Elite</li>
+            <li>7 Homes</li>
+            <li>Premium kit ringan</li>
+            <li>Priority support</li>
+            <li>Tag spesial</li>
+          </ul>
+          <div class="rank-actions">
+            <a class="btn primary" href="https://wa.me/6285602052384?text=Halo%20saya%20mau%20beli%20rank%20Elite%2B%20Ryzoria%20SMP" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="btn ghost" href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer">Discord Ticket</a>
+          </div>
+        </article>
+
+        <article class="rank legends">
+          <div class="top">
+            <div class="badge popular">Popular</div>
+            <div class="price">145K</div>
+          </div>
+          <h3 class="rank-title">Legends</h3>
+          <ul>
+            <li>Semua Elite+</li>
+            <li>8 Homes</li>
+            <li>Special prefix</li>
+            <li>Monthly crate kecil</li>
+            <li>VIP lounge access</li>
+          </ul>
+          <div class="rank-actions">
+            <a class="btn primary" href="https://wa.me/6285602052384?text=Halo%20saya%20mau%20beli%20rank%20Legends%20Ryzoria%20SMP" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="btn ghost" href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer">Discord Ticket</a>
+          </div>
+        </article>
+
+        <article class="rank">
+          <div class="top">
+            <div class="badge">Ryzoria</div>
+            <div class="price">200K</div>
+          </div>
+          <h3 class="rank-title">Ryzoria</h3>
+          <ul>
+            <li>Semua Legends</li>
+            <li>Custom tag</li>
+            <li>Priority build access</li>
+            <li>Event access</li>
+            <li>Perk lifetime ringan</li>
+          </ul>
+          <div class="rank-actions">
+            <a class="btn primary" href="https://wa.me/6285602052384?text=Halo%20saya%20mau%20beli%20rank%20Ryzoria%20Ryzoria%20SMP" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="btn ghost" href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer">Discord Ticket</a>
+          </div>
+        </article>
+
+        <article class="rank">
+          <div class="top">
+            <div class="badge">Ryzoria+</div>
+            <div class="price">300K</div>
+          </div>
+          <h3 class="rank-title">Ryzoria+</h3>
+          <ul>
+            <li>Semua Ryzoria</li>
+            <li>Owner style badge</li>
+            <li>All future features</li>
+            <li>Top priority</li>
+            <li>Legendary support</li>
+          </ul>
+          <div class="rank-actions">
+            <a class="btn primary" href="https://wa.me/6285602052384?text=Halo%20saya%20mau%20beli%20rank%20Ryzoria%2B%20Ryzoria%20SMP" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="btn ghost" href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer">Discord Ticket</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+    <section class="section reveal" id="community">
+      <div class="section-head">
+        <h2>Community</h2>
+        <span>Masuk lalu tekan ticket kalau mau order</span>
+      </div>
+      <div class="glass panel">
+        <p>Kalau mau beli rank, paling gampang lewat WhatsApp. Kalau mau lewat Discord, masuk dulu lalu buka ticket.</p>
+        <div class="community">
+          <a class="btn" href="https://wa.me/6285602052384" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn" href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer">Discord</a>
+          <a class="btn primary" href="#rank">Lihat Rank Populer</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">© 2026 Ryzoria SMP • Blue Black Edition</div>
+  </main>
+
+  <button class="top-btn" id="topBtn" aria-label="Back to top">↑</button>
+  <div class="btn copy-toast" id="copyToast">Copied</div>
+
+  <script>
+    const nav = document.getElementById('nav');
+    const topBtn = document.getElementById('topBtn');
+    const toast = document.getElementById('copyToast');
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function handleScroll() {
+      nav.classList.toggle('scrolled', window.scrollY > 8);
+      topBtn.classList.toggle('show', window.scrollY > 420);
+    }
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    menuBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileMenu.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && e.target !== menuBtn) {
+        mobileMenu.classList.remove('open');
+      }
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    document.querySelectorAll('[data-copy]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const value = btn.getAttribute('data-copy');
+        try {
+          await navigator.clipboard.writeText(value);
+          toast.textContent = 'IP copied';
+        } catch {
+          toast.textContent = 'Copy gagal';
+        }
+        toast.classList.add('show');
+        clearTimeout(window.__toastTimer);
+        window.__toastTimer = setTimeout(() => toast.classList.remove('show'), 1500);
+      });
+    });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14 });
+      revealEls.forEach(el => io.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('in'));
+    }
+  </script>
+</body>
+</html>

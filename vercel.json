@@ -1,7 +1,7 @@
 {
   "buildCommand": "",
   "outputDirectory": ".",
-  "framework": "static",
+  "framework": "html",
   "public": true,
   "cleanUrls": false,
   "headers": [

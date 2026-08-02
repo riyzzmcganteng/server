@@ -237,3 +237,8 @@
 .smooth-transition-slow {
   transition: all 0.5s ease;
 }
+
+/* Animation Delay Support */
+[style*="--animation-delay"] {
+  animation-delay: var(--animation-delay) !important;
+}

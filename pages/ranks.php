@@ -5,8 +5,8 @@
 <section class="ranks-header section" style="background: linear-gradient(135deg, rgba(97,225,255,0.1) 0%, rgba(0,153,255,0.05) 100%); padding: 4rem 0;">
   <div class="container">
     <div style="text-align: center;">
-      <h1 class="gradient-text" style="font-size: 3rem; margin-bottom: 1rem;">Rank Store</h1>
-      <p style="color: var(--text-muted); font-size: var(--text-lg);">Unlock exclusive perks and support the server</p>
+      <h1 class="gradient-text" style="font-size: 3rem; margin-bottom: 1rem;">Premium Rank Store</h1>
+      <p style="color: var(--text-muted); font-size: var(--text-lg);">Unlock exclusive perks, support the server, and join the elite community</p>
     </div>
   </div>
 </section>
@@ -14,34 +14,48 @@
 <!-- Rank Cards -->
 <section class="section">
   <div class="container">
-    <div class="grid-4">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
       <?php foreach ($ranks as $rank): ?>
-        <div class="rank-card animate-fade-in-up <?php echo $rank['id'] === 4 ? 'featured' : ''; ?>">
-          <?php if ($rank['id'] === 4): ?>
-            <div class="badge badge-primary" style="margin-bottom: 1rem; display: inline-block;">★ BEST VALUE ★</div>
+        <?php 
+          $rankClass = strtolower(str_replace('+', 'plus', $rank['name']));
+          $isPopular = isset($rank['featured']) && $rank['featured'];
+        ?>
+        <div class="rank-card animate-fade-in-up <?php echo $rankClass; ?> <?php echo $isPopular ? 'featured' : ''; ?>" style="position: relative;">
+          <?php if ($isPopular): ?>
+            <div class="popular-badge">⭐ Most Popular</div>
           <?php endif; ?>
 
-          <div class="rank-badge" style="background: rgba(<?php echo intval(hexdec(substr($rank['color'], 1, 2))); ?>, <?php echo intval(hexdec(substr($rank['color'], 3, 2))); ?>, <?php echo intval(hexdec(substr($rank['color'], 5, 2))); ?>, 0.2); border-color: <?php echo $rank['color']; ?>40; color: <?php echo $rank['color']; ?>;">
-            <?php echo $rank['name']; ?>
+          <div class="rank-badge" style="background: rgba(97,225,255,0.1); border: 1px solid <?php echo $rank['color']; ?>40; color: <?php echo $rank['color']; ?>;">
+            Rank <?php echo $rank['id']; ?>
           </div>
 
           <h3 class="rank-title" style="color: <?php echo $rank['color']; ?>;">
             <?php echo $rank['name']; ?>
           </h3>
 
-          <div class="rank-price">
+          <div class="rank-price" style="color: <?php echo $rank['color']; ?>;">
             <?php echo $rank['price']; ?>
           </div>
 
-          <ul class="features-list">
+          <ul class="features-list" style="margin: 1.5rem 0;">
             <?php foreach ($rank['features'] as $feature): ?>
               <li><?php echo $feature; ?></li>
             <?php endforeach; ?>
           </ul>
 
-          <a href="<?php echo DISCORD_LINK; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
-            <i class="fab fa-discord"></i> Get <?php echo $rank['name']; ?>
-          </a>
+          <!-- Purchase Buttons -->
+          <div class="purchase-buttons">
+            <a href="https://wa.me/<?php echo WHATSAPP_PHONE; ?>" target="_blank" rel="noopener noreferrer" class="purchase-btn purchase-btn-whatsapp">
+              <i class="fab fa-whatsapp"></i> Buy via WhatsApp
+            </a>
+            <a href="<?php echo DISCORD_LINK; ?>" target="_blank" rel="noopener noreferrer" class="purchase-btn purchase-btn-discord">
+              <i class="fab fa-discord"></i> Discord Ticket
+            </a>
+          </div>
+
+          <div class="support-note" style="margin-top: 1rem;">
+            Need help? You can purchase your rank through WhatsApp or by opening a Discord Ticket.
+          </div>
         </div>
       <?php endforeach; ?>
     </div>
@@ -124,35 +138,84 @@
 </section>
 
 <!-- How to Purchase -->
-<section class="section">
+<section class="section" style="background: linear-gradient(180deg, rgba(97,225,255,0.05) 0%, rgba(97,225,255,0) 100%);">
   <div class="container">
     <div style="text-align: center; margin-bottom: 3rem;">
       <h2 class="gradient-text" style="margin-bottom: 1rem;">How to Purchase Ranks</h2>
+      <p style="color: var(--text-muted);">Choose your preferred method to get your rank</p>
     </div>
 
     <div class="grid-3">
       <div class="card animate-fade-in-up">
-        <div style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary);">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem; color: #25D366;">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <h3 style="color: #25D366; margin-bottom: 1rem;">Via WhatsApp</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Message us on WhatsApp to purchase your rank directly. Quick response time!</p>
+        <a href="https://wa.me/<?php echo WHATSAPP_PHONE; ?>" target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none; font-weight: 600;">Contact Now →</a>
+      </div>
+
+      <div class="card animate-fade-in-up">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem; color: #5865F2;">
           <i class="fab fa-discord"></i>
         </div>
-        <h3 style="color: var(--primary); margin-bottom: 1rem;">1. Join Discord</h3>
-        <p style="color: var(--text-muted);">Join our Discord server to access the rank shop and payment options.</p>
+        <h3 style="color: #5865F2; margin-bottom: 1rem;">Via Discord Ticket</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Open a support ticket in Discord to purchase your rank and get instant support.</p>
+        <a href="<?php echo DISCORD_LINK; ?>" target="_blank" rel="noopener noreferrer" style="color: #5865F2; text-decoration: none; font-weight: 600;">Join Discord →</a>
       </div>
 
       <div class="card animate-fade-in-up">
-        <div style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent-dark);">
-          <i class="fas fa-credit-card"></i>
-        </div>
-        <h3 style="color: var(--accent-dark); margin-bottom: 1rem;">2. Choose & Pay</h3>
-        <p style="color: var(--text-muted);">Select your desired rank and complete the payment process securely.</p>
-      </div>
-
-      <div class="card animate-fade-in-up">
-        <div style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--success);">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary);">
           <i class="fas fa-check-circle"></i>
         </div>
-        <h3 style="color: var(--success); margin-bottom: 1rem;">3. Claim Perks</h3>
-        <p style="color: var(--text-muted);">After payment, your rank and perks will be instantly activated in-game.</p>
+        <h3 style="color: var(--primary); margin-bottom: 1rem;">Instant Activation</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">After payment confirmed, your rank will be activated in-game immediately!</p>
+        <span style="color: var(--primary); font-weight: 600;">⚡ No Waiting</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Support & Report Bugs -->
+<section class="section">
+  <div class="container">
+    <div class="support-section">
+      <h2 style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+        <i class="fas fa-tools" style="color: var(--primary);"></i> Support & Report Bugs
+      </h2>
+      <p>Found a bug or need help? Contact us through one of the following platforms:</p>
+
+      <div class="support-links">
+        <!-- TikTok Link -->
+        <a href="https://www.tiktok.com/@<?php echo TIKTOK_USERNAME; ?>" target="_blank" rel="noopener noreferrer" class="support-link animate-fade-in-up" style="--animation-delay: 0.1s;">
+          <div class="support-link-icon" style="color: #000;">
+            <i class="fab fa-tiktok"></i>
+          </div>
+          <div class="support-link-title">TikTok</div>
+          <div class="support-link-username">@<?php echo TIKTOK_USERNAME; ?></div>
+        </a>
+
+        <!-- WhatsApp Link -->
+        <a href="https://wa.me/<?php echo WHATSAPP_PHONE; ?>" target="_blank" rel="noopener noreferrer" class="support-link animate-fade-in-up" style="--animation-delay: 0.2s;">
+          <div class="support-link-icon" style="color: #25D366;">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <div class="support-link-title">WhatsApp</div>
+          <div class="support-link-username">+62 856 0205 2384</div>
+        </a>
+
+        <!-- Discord Link -->
+        <a href="<?php echo DISCORD_LINK; ?>" target="_blank" rel="noopener noreferrer" class="support-link animate-fade-in-up" style="--animation-delay: 0.3s;">
+          <div class="support-link-icon" style="color: #5865F2;">
+            <i class="fab fa-discord"></i>
+          </div>
+          <div class="support-link-title">Discord</div>
+          <div class="support-link-username">Join Server</div>
+        </a>
+      </div>
+
+      <div class="support-note" style="margin-top: 2rem; text-align: center; border: none; border-radius: var(--radius-lg); padding: 1.5rem; background: rgba(97, 225, 255, 0.08); border-left: 3px solid var(--primary);">
+        <p style="margin: 0;">If you find any bugs or experience any issues, please contact us via TikTok, WhatsApp, or Discord. We'll respond as soon as possible.</p>
       </div>
     </div>
   </div>

@@ -1,21 +1,21 @@
 <!-- ============================================
-     SERVER INFO PAGE
+     HALAMAN INFORMASI SERVER
      ============================================ -->
 
 <section class="server-header section" style="background: linear-gradient(135deg, rgba(97,225,255,0.1) 0%, rgba(0,153,255,0.05) 100%); padding: 4rem 0;">
   <div class="container">
     <div style="text-align: center;">
-      <h1 class="gradient-text" style="font-size: 3rem; margin-bottom: 1rem;">Server Information</h1>
-      <p style="color: var(--text-muted); font-size: var(--text-lg);">Everything you need to know about Ryzoria SMP</p>
+      <h1 class="gradient-text" style="font-size: 3rem; margin-bottom: 1rem;">Informasi Server</h1>
+      <p style="color: var(--text-muted); font-size: var(--text-lg);">Semua yang perlu Anda ketahui tentang Ryzoria SMP</p>
     </div>
   </div>
 </section>
 
-<!-- Connection Details -->
+<!-- Detail Koneksi -->
 <section class="section">
   <div class="container">
     <div style="text-align: center; margin-bottom: 3rem;">
-      <h2 class="gradient-text" style="margin-bottom: 1rem;">Connection Details</h2>
+      <h2 class="gradient-text" style="margin-bottom: 1rem;">Detail Koneksi</h2>
     </div>
 
     <div class="grid-2">
@@ -25,25 +25,25 @@
           <i class="fas fa-cube"></i>
         </div>
         <h3 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.5rem;">Java Edition</h3>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">For Minecraft Java Edition</p>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Untuk Minecraft Java Edition</p>
 
         <div style="background: rgba(0,0,0,0.3); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0;">
           <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">
-            Server IP
+            IP Server
           </div>
           <div style="font-size: 1.5rem; color: var(--primary); font-family: 'Courier New', monospace; word-break: break-all; margin-bottom: 1rem; font-weight: 700;">
             ryzoriasmp.my.id
           </div>
           <button class="btn btn-primary copy-java-btn" style="width: 100%;">
-            <i class="fas fa-copy"></i> Copy IP
+            <i class="fas fa-copy"></i> Salin IP
           </button>
         </div>
 
         <ul class="features-list">
-          <li>Latest Version Support</li>
-          <li>Cross-Play Compatible</li>
-          <li>24/7 Uptime</li>
-          <li>Anti-Cheat Enabled</li>
+          <li>Dukungan Versi Terbaru</li>
+          <li>Kompatibel Cross-Play</li>
+          <li>Waktu Aktif 24/7</li>
+          <li>Anti-Cheat Aktif</li>
         </ul>
       </div>
 
@@ -53,11 +53,11 @@
           <i class="fas fa-mobile-alt"></i>
         </div>
         <h3 style="color: var(--accent-dark); margin-bottom: 0.5rem; font-size: 1.5rem;">Bedrock Edition</h3>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">For Minecraft Bedrock (Console, Mobile, Windows)</p>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Untuk Minecraft Bedrock (Konsol, Mobile, Windows)</p>
 
         <div style="background: rgba(0,0,0,0.3); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0;">
           <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">
-            Connection Details
+            Detail Koneksi
           </div>
           <div style="margin-bottom: 1rem;">
             <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;">IP</div>
@@ -72,109 +72,138 @@
             </div>
           </div>
           <button class="btn btn-primary copy-bedrock-btn" style="width: 100%;">
-            <i class="fas fa-copy"></i> Copy IP:Port
+            <i class="fas fa-copy"></i> Salin IP:Port
           </button>
         </div>
 
         <ul class="features-list">
-          <li>Console Support</li>
-          <li>Mobile Compatible</li>
+          <li>Dukungan Konsol</li>
+          <li>Kompatibel Mobile</li>
           <li>Switch & Xbox</li>
-          <li>Real-time Sync</li>
+          <li>Sinkronisasi Real-time</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Server Specifications -->
+<!-- Informasi Server -->
 <section class="section" style="background: linear-gradient(180deg, rgba(97,225,255,0.05) 0%, rgba(97,225,255,0) 100%);">
   <div class="container">
     <div style="text-align: center; margin-bottom: 3rem;">
-      <h2 class="gradient-text" style="margin-bottom: 1rem;">Server Specifications</h2>
+      <h2 class="gradient-text" style="margin-bottom: 1rem;">🎮 Informasi Server</h2>
     </div>
 
-    <div class="grid-4">
-      <div class="stats-card animate-fade-in-up">
-        <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">
-          <i class="fas fa-tachometer-alt"></i>
+    <div style="max-width: 900px; margin: 0 auto;">
+      <div class="card animate-fade-in-up" style="margin-bottom: 1.5rem;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; text-align: center;">
+          <div>
+            <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">IP Java</div>
+            <div style="font-size: 1.5rem; color: var(--primary); font-family: 'Courier New', monospace; font-weight: 700; margin-bottom: 1rem;">ryzoriasmp.my.id</div>
+            <button class="btn btn-primary copy-java-btn" style="width: 100%;">
+              <i class="fas fa-copy"></i> Salin IP Java
+            </button>
+          </div>
+          <div>
+            <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">IP Bedrock</div>
+            <div style="font-size: 1.5rem; color: var(--accent-dark); font-family: 'Courier New', monospace; font-weight: 700; margin-bottom: 1rem;">ryzoriasmp.my.id</div>
+            <button class="btn btn-primary copy-bedrock-btn" style="width: 100%;">
+              <i class="fas fa-copy"></i> Salin IP Bedrock
+            </button>
+          </div>
         </div>
-        <div class="stat-number" style="font-size: 1.875rem;">64 GB</div>
-        <div class="stat-label">Server RAM</div>
       </div>
 
-      <div class="stats-card animate-fade-in-up">
-        <div style="font-size: 2.5rem; color: var(--accent-dark); margin-bottom: 1rem;">
-          <i class="fas fa-network-wired"></i>
+      <div class="grid-4">
+        <div class="card animate-fade-in-up">
+          <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; text-align: center;">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Port Bedrock</div>
+            <div style="font-size: 1.875rem; color: var(--primary); font-weight: 700;">25632</div>
+          </div>
         </div>
-        <div class="stat-number" style="font-size: 1.875rem;">Gigabit</div>
-        <div class="stat-label">Connection</div>
-      </div>
 
-      <div class="stats-card animate-fade-in-up">
-        <div style="font-size: 2.5rem; color: var(--success); margin-bottom: 1rem;">
-          <i class="fas fa-clock"></i>
+        <div class="card animate-fade-in-up">
+          <div style="font-size: 2.5rem; color: var(--accent-dark); margin-bottom: 1rem; text-align: center;">
+            <i class="fas fa-cube"></i>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Versi</div>
+            <div style="font-size: 1.875rem; color: var(--accent-dark); font-weight: 700;">1.21.8+</div>
+          </div>
         </div>
-        <div class="stat-number" style="font-size: 1.875rem;">99.9%</div>
-        <div class="stat-label">Uptime SLA</div>
-      </div>
 
-      <div class="stats-card animate-fade-in-up">
-        <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">
-          <i class="fas fa-server"></i>
+        <div class="card animate-fade-in-up">
+          <div style="font-size: 2.5rem; color: var(--success); margin-bottom: 1rem; text-align: center;">
+            <i class="fas fa-gamepad"></i>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Mode</div>
+            <div style="font-size: 1.875rem; color: var(--success); font-weight: 700;">Survival Economy</div>
+          </div>
         </div>
-        <div class="stat-number" style="font-size: 1.875rem;">Premium</div>
-        <div class="stat-label">Hosting</div>
+
+        <div class="card animate-fade-in-up">
+          <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; text-align: center;">
+            <i class="fas fa-link"></i>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Platform</div>
+            <div style="font-size: 1.875rem; color: var(--primary); font-weight: 700;">Java & Bedrock</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Server Rules -->
+<!-- Peraturan Server -->
 <section class="section">
   <div class="container">
     <div style="text-align: center; margin-bottom: 3rem;">
-      <h2 class="gradient-text" style="margin-bottom: 1rem;">Server Rules</h2>
-      <p style="color: var(--text-muted);">Please follow these rules to maintain a positive community</p>
+      <h2 class="gradient-text" style="margin-bottom: 1rem;">Peraturan Server</h2>
+      <p style="color: var(--text-muted);">Harap ikuti peraturan ini untuk menjaga komunitas yang positif</p>
     </div>
 
     <div class="grid-2">
       <div class="card animate-fade-in-up">
         <h3 style="color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fas fa-shield-alt"></i> Be Respectful
+          <i class="fas fa-shield-alt"></i> Saling Menghormati
         </h3>
-        <p style="color: var(--text-muted);">Treat all players with respect. No discrimination, harassment, or bullying of any kind.</p>
+        <p style="color: var(--text-muted);">Perlakukan semua pemain dengan hormat. Tidak ada diskriminasi, pelecehan, atau bullying.</p>
       </div>
 
       <div class="card animate-fade-in-up">
         <h3 style="color: var(--accent-dark); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fas fa-ban"></i> No Griefing
+          <i class="fas fa-ban"></i> Tidak Boleh Griefing
         </h3>
-        <p style="color: var(--text-muted);">Griefing, raiding, and stealing are strictly prohibited. Build in designated areas.</p>
+        <p style="color: var(--text-muted);">Griefing, raiding, dan pencurian dilarang keras. Bangun di area yang ditunjuk.</p>
       </div>
 
       <div class="card animate-fade-in-up">
         <h3 style="color: var(--success); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fas fa-check-circle"></i> No Cheating
+          <i class="fas fa-check-circle"></i> Tidak Boleh Curang
         </h3>
-        <p style="color: var(--text-muted);">Hacking, exploits, and mods are not allowed. Use vanilla Minecraft only.</p>
+        <p style="color: var(--text-muted);">Hacking, exploit, dan mod tidak diizinkan. Gunakan Minecraft vanilla saja.</p>
       </div>
 
       <div class="card animate-fade-in-up">
         <h3 style="color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fas fa-comments"></i> Keep Chat Clean
+          <i class="fas fa-comments"></i> Jaga Chat Tetap Bersih
         </h3>
-        <p style="color: var(--text-muted);">No spam, advertising, or inappropriate language in chat. Be family-friendly.</p>
+        <p style="color: var(--text-muted);">Tidak ada spam, iklan, atau bahasa kasar di chat. Bersahabat dengan keluarga.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- How to Join -->
+<!-- Cara Bergabung -->
 <section class="section" style="background: linear-gradient(180deg, rgba(97,225,255,0.05) 0%, rgba(97,225,255,0) 100%);">
   <div class="container">
     <div style="text-align: center; margin-bottom: 3rem;">
-      <h2 class="gradient-text" style="margin-bottom: 1rem;">How to Join</h2>
+      <h2 class="gradient-text" style="margin-bottom: 1rem;">Cara Bergabung</h2>
     </div>
 
     <div style="max-width: 800px; margin: 0 auto;">
@@ -196,8 +225,8 @@
             1
           </div>
           <div>
-            <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Get Minecraft</h3>
-            <p style="color: var(--text-muted);">Download and install Minecraft Java or Bedrock Edition on your device.</p>
+            <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Dapatkan Minecraft</h3>
+            <p style="color: var(--text-muted);">Unduh dan instal Minecraft Java atau Bedrock Edition di perangkat Anda.</p>
           </div>
         </div>
       </div>
@@ -220,8 +249,8 @@
             2
           </div>
           <div>
-            <h3 style="color: var(--accent-dark); margin-bottom: 0.5rem;">Copy Connection Details</h3>
-            <p style="color: var(--text-muted);">Use the server IP and port information above (click the copy button for easy access).</p>
+            <h3 style="color: var(--accent-dark); margin-bottom: 0.5rem;">Salin Detail Koneksi</h3>
+            <p style="color: var(--text-muted);">Gunakan informasi IP dan port server di atas (klik tombol salin untuk akses mudah).</p>
           </div>
         </div>
       </div>
@@ -244,8 +273,8 @@
             3
           </div>
           <div>
-            <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Add Server</h3>
-            <p style="color: var(--text-muted);">Open Minecraft, go to Multiplayer, click "Add Server" and paste the connection details.</p>
+            <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Tambah Server</h3>
+            <p style="color: var(--text-muted);">Buka Minecraft, masuk ke Multiplayer, klik "Tambah Server" dan tempel detail koneksi.</p>
           </div>
         </div>
       </div>
@@ -268,8 +297,8 @@
             4
           </div>
           <div>
-            <h3 style="color: var(--accent-dark); margin-bottom: 0.5rem;">Join & Play!</h3>
-            <p style="color: var(--text-muted);">Click "Join Server" and start your adventure on Ryzoria SMP!</p>
+            <h3 style="color: var(--accent-dark); margin-bottom: 0.5rem;">Bergabung & Mainkan!</h3>
+            <p style="color: var(--text-muted);">Klik "Bergabung Server" dan mulai petualangan Anda di Ryzoria SMP!</p>
           </div>
         </div>
       </div>
@@ -277,14 +306,14 @@
   </div>
 </section>
 
-<!-- Support CTA -->
+<!-- CTA Bantuan -->
 <section class="section">
   <div class="container">
     <div class="cta-card" style="text-align: center;">
-      <h2 style="color: var(--primary); margin-bottom: 1rem;">Need Help?</h2>
-      <p style="color: var(--text-muted); margin-bottom: 2rem;">Join our Discord community for support and questions</p>
+      <h2 style="color: var(--primary); margin-bottom: 1rem;">Butuh Bantuan?</h2>
+      <p style="color: var(--text-muted); margin-bottom: 2rem;">Bergabunglah dengan komunitas Discord kami untuk dukungan dan pertanyaan</p>
       <a href="<?php echo DISCORD_LINK; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-        <i class="fab fa-discord"></i> Join Discord
+        <i class="fab fa-discord"></i> Gabung Discord
       </a>
     </div>
   </div>

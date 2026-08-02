@@ -1,60 +1,86 @@
 <!-- ============================================
-     RANK STORE PAGE
+     RANK STORE PAGE - PREMIUM GLASSMORPHISM
      ============================================ -->
 
-<section class="ranks-header section" style="background: linear-gradient(135deg, rgba(97,225,255,0.1) 0%, rgba(0,153,255,0.05) 100%); padding: 4rem 0;">
-  <div class="container">
+<section class="ranks-hero section" style="background: linear-gradient(135deg, rgba(97,225,255,0.15) 0%, rgba(0,153,255,0.08) 100%); padding: 5rem 2rem; position: relative; overflow: hidden;">
+  <div style="position: absolute; inset: 0; background: url('data:image/svg+xml,<svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" fill-rule=\"evenodd\"><g fill=\"%2361E1FF\" fill-opacity=\"0.05\"><path d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/></g></g></svg>'); opacity: 0.3;"></div>
+  <div class="container" style="position: relative; z-index: 2;">
     <div style="text-align: center;">
-      <h1 class="gradient-text" style="font-size: 3rem; margin-bottom: 1rem;">Premium Rank Store</h1>
-      <p style="color: var(--text-muted); font-size: var(--text-lg);">Unlock exclusive perks, support the server, and join the elite community</p>
+      <h1 class="gradient-text" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; letter-spacing: -1px;">Premium Rank Store</h1>
+      <p style="color: var(--text-muted); font-size: var(--text-lg); max-width: 600px; margin: 0 auto;">Unlock exclusive perks, support the server, and join the elite Ryzoria SMP community</p>
     </div>
   </div>
 </section>
 
-<!-- Rank Cards -->
-<section class="section">
+<!-- Rank Cards Grid -->
+<section class="section" style="padding: 4rem 2rem;">
   <div class="container">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
       <?php foreach ($ranks as $rank): ?>
         <?php 
-          $rankClass = strtolower(str_replace('+', 'plus', $rank['name']));
-          $isPopular = isset($rank['featured']) && $rank['featured'];
+          $rankClass = strtolower(str_replace('+', 'plus', str_replace(' ', '', $rank['name'])));
+          $isPremium = isset($rank['premium']) && $rank['premium'];
+          $isPopular = isset($rank['popular']) && $rank['popular'];
         ?>
-        <div class="rank-card animate-fade-in-up <?php echo $rankClass; ?> <?php echo $isPopular ? 'featured' : ''; ?>" style="position: relative;">
+        <div class="rank-card glass-card <?php echo $rankClass; ?> <?php echo $isPremium ? 'premium-rank' : ''; ?>" style="position: relative; backdrop-filter: blur(10px); border: 1px solid rgba(97,225,255,0.2); border-radius: 20px; background: rgba(26,31,58,0.7); padding: 2rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; height: 100%;">
+          
+          <!-- Badge -->
           <?php if ($isPopular): ?>
-            <div class="popular-badge">⭐ Most Popular</div>
+            <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: linear-gradient(135deg, rgba(97,225,255,0.3) 0%, rgba(0,212,255,0.2) 100%); border: 1px solid rgba(97,225,255,0.5); border-radius: 50px; width: fit-content; margin-bottom: 1rem; font-size: 0.75rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 1px;">
+              ⭐ Most Popular
+            </div>
+          <?php endif; ?>
+          <?php if ($isPremium): ?>
+            <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: linear-gradient(135deg, rgba(139,92,246,0.3) 0%, rgba(236,72,153,0.2) 100%); border: 1px solid rgba(139,92,246,0.5); border-radius: 50px; width: fit-content; margin-bottom: 1rem; font-size: 0.75rem; font-weight: 700; color: <?php echo $rank['color']; ?>; text-transform: uppercase; letter-spacing: 1px;">
+              👑 Premium
+            </div>
           <?php endif; ?>
 
-          <div class="rank-badge" style="background: rgba(97,225,255,0.1); border: 1px solid <?php echo $rank['color']; ?>40; color: <?php echo $rank['color']; ?>;">
-            Rank <?php echo $rank['id']; ?>
+          <!-- Rank Name & Icon -->
+          <div style="margin-bottom: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+              <div style="font-size: 2rem;">
+                <?php 
+                  $icons = ['VIP' => '💎', 'VIP+' => '💎', 'MVP' => '👑', 'MVP+' => '👑', 'Elite' => '⚔️', 'Elite+' => '⚔️', 'Legends' => '🏆', 'Ryzoria' => '🌟', 'Ryzoria+' => '✨'];
+                  echo $icons[$rank['name']] ?? '⭐';
+                ?>
+              </div>
+              <div>
+                <h3 style="margin: 0; font-size: 1.75rem; font-weight: 800; color: <?php echo $rank['color']; ?>;"><?php echo $rank['name']; ?></h3>
+              </div>
+            </div>
+            <div style="font-size: 0.875rem; color: var(--text-muted);">Rank <?php echo $rank['id']; ?> of 9</div>
           </div>
 
-          <h3 class="rank-title" style="color: <?php echo $rank['color']; ?>;">
-            <?php echo $rank['name']; ?>
-          </h3>
-
-          <div class="rank-price" style="color: <?php echo $rank['color']; ?>;">
-            <?php echo $rank['price']; ?>
+          <!-- Price -->
+          <div style="margin-bottom: 2rem;">
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Price</div>
+            <div style="font-size: 2rem; font-weight: 800; color: <?php echo $rank['color']; ?>;"><?php echo $rank['price']; ?></div>
           </div>
 
-          <ul class="features-list" style="margin: 1.5rem 0;">
+          <!-- Features -->
+          <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; flex-grow: 1;">
             <?php foreach ($rank['features'] as $feature): ?>
-              <li><?php echo $feature; ?></li>
+              <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: var(--text-muted); font-size: 0.95rem;">
+                <span style="color: <?php echo $rank['color']; ?>; font-weight: 700; margin-top: 2px;">✓</span>
+                <span><?php echo $feature; ?></span>
+              </li>
             <?php endforeach; ?>
           </ul>
 
           <!-- Purchase Buttons -->
-          <div class="purchase-buttons">
-            <a href="https://wa.me/<?php echo WHATSAPP_PHONE; ?>" target="_blank" rel="noopener noreferrer" class="purchase-btn purchase-btn-whatsapp">
-              <i class="fab fa-whatsapp"></i> Buy via WhatsApp
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: auto;">
+            <a href="https://wa.me/<?php echo WHATSAPP_PHONE; ?>" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 0.9rem 1.5rem; background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.4); border-radius: 12px; color: #25D366; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none;">
+              <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
-            <a href="<?php echo DISCORD_LINK; ?>" target="_blank" rel="noopener noreferrer" class="purchase-btn purchase-btn-discord">
+            <a href="<?php echo DISCORD_LINK; ?>" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 0.9rem 1.5rem; background: rgba(88,101,242,0.15); border: 1px solid rgba(88,101,242,0.4); border-radius: 12px; color: #5865F2; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none;">
               <i class="fab fa-discord"></i> Discord Ticket
             </a>
           </div>
 
-          <div class="support-note" style="margin-top: 1rem;">
-            Need help? You can purchase your rank through WhatsApp or by opening a Discord Ticket.
+          <!-- Support Note -->
+          <div style="margin-top: 1.5rem; padding: 0.875rem; background: rgba(97,225,255,0.08); border-left: 3px solid var(--primary); border-radius: 8px; font-size: 0.8rem; color: var(--text-muted);">
+            Need help? Purchase your rank through WhatsApp or Discord Ticket.
           </div>
         </div>
       <?php endforeach; ?>
@@ -62,109 +88,76 @@
   </div>
 </section>
 
-<!-- Rank Comparison -->
-<section class="section" style="background: linear-gradient(180deg, rgba(97,225,255,0.05) 0%, rgba(97,225,255,0) 100%);">
+<!-- Rank Comparison Table -->
+<section class="section" style="padding: 4rem 2rem; background: linear-gradient(180deg, rgba(97,225,255,0.05) 0%, transparent 100%);">
   <div class="container">
-    <div style="text-align: center; margin-bottom: 3rem;">
-      <h2 class="gradient-text" style="margin-bottom: 1rem;">Rank Comparison</h2>
-      <p style="color: var(--text-muted);">Choose the rank that fits your playstyle</p>
-    </div>
-
-    <div style="overflow-x: auto;">
-      <table style="
-        width: 100%;
-        border-collapse: collapse;
-        background: rgba(42, 47, 74, 0.6);
-        border: 1px solid rgba(97, 225, 255, 0.15);
-        border-radius: var(--radius-lg);
-        overflow: hidden;
-      ">
+    <h2 class="gradient-text" style="text-align: center; margin-bottom: 3rem; font-size: 2rem;">Rank Comparison</h2>
+    <div style="overflow-x: auto; border-radius: 16px; border: 1px solid rgba(97,225,255,0.15);">
+      <table style="width: 100%; border-collapse: collapse; background: rgba(26,31,58,0.5); backdrop-filter: blur(10px);">
         <thead>
-          <tr style="background: rgba(97, 225, 255, 0.1); border-bottom: 1px solid rgba(97, 225, 255, 0.15);">
-            <th style="padding: 1rem; text-align: left; color: var(--primary); font-weight: 700; min-width: 150px;">Feature</th>
-            <th style="padding: 1rem; text-align: center; color: #61E1FF; font-size: 0.875rem;">VIP</th>
-            <th style="padding: 1rem; text-align: center; color: #00D4FF; font-size: 0.875rem;">VIP+</th>
-            <th style="padding: 1rem; text-align: center; color: #0099FF; font-size: 0.875rem;">MVP</th>
-            <th style="padding: 1rem; text-align: center; color: #5B21B6; font-size: 0.875rem; font-weight: 700;">MVP+</th>
-            <th style="padding: 1rem; text-align: center; color: #DC2626; font-size: 0.875rem;">Elite</th>
-            <th style="padding: 1rem; text-align: center; color: #F59E0B; font-size: 0.875rem;">Elite+</th>
-            <th style="padding: 1rem; text-align: center; color: #10B981; font-size: 0.875rem; font-weight: 700;">Legends</th>
-            <th style="padding: 1rem; text-align: center; color: #8B5CF6; font-size: 0.875rem;">Ryzoria</th>
-            <th style="padding: 1rem; text-align: center; color: #EC4899; font-size: 0.875rem;">Ryzoria+</th>
+          <tr style="background: rgba(97,225,255,0.1); border-bottom: 1px solid rgba(97,225,255,0.15);">
+            <th style="padding: 1.5rem; text-align: left; color: var(--primary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Feature</th>
+            <?php foreach ($ranks as $rank): ?>
+              <th style="padding: 1.5rem; text-align: center; color: <?php echo $rank['color']; ?>; font-weight: 700; font-size: 0.85rem; white-space: nowrap;">
+                <?php echo $rank['name']; ?>
+              </th>
+            <?php endforeach; ?>
           </tr>
         </thead>
         <tbody>
-          <tr style="border-bottom: 1px solid rgba(97, 225, 255, 0.1);">
-            <td style="padding: 1rem; color: var(--text-muted);">Color Chat</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+          <tr style="border-bottom: 1px solid rgba(97,225,255,0.1);">
+            <td style="padding: 1.25rem; color: var(--text-muted); font-weight: 600;">Color Chat</td>
+            <?php foreach ($ranks as $rank): ?>
+              <td style="padding: 1.25rem; text-align: center; color: #25D366;"><i class="fas fa-check"></i></td>
+            <?php endforeach; ?>
           </tr>
-          <tr style="border-bottom: 1px solid rgba(97, 225, 255, 0.1);">
-            <td style="padding: 1rem; color: var(--text-muted);">/fly Command</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--error);">✗</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+          <tr style="border-bottom: 1px solid rgba(97,225,255,0.1);">
+            <td style="padding: 1.25rem; color: var(--text-muted); font-weight: 600;">Homes</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">2</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">4</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">6</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">8</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">10</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">∞</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">∞</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">∞</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">∞</td>
           </tr>
-          <tr style="border-bottom: 1px solid rgba(97, 225, 255, 0.1);">
-            <td style="padding: 1rem; color: var(--text-muted);">Homes</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">2</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">4</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">6</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">8</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">10</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">∞</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">∞</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">∞</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">∞</td>
+          <tr style="border-bottom: 1px solid rgba(97,225,255,0.1);">
+            <td style="padding: 1.25rem; color: var(--text-muted); font-weight: 600;">/fly Command</td>
+            <td style="padding: 1.25rem; text-align: center; color: #EF4444;">✗</td>
+            <td style="padding: 1.25rem; text-align: center; color: #25D366;"><i class="fas fa-check"></i></td>
+            <td style="padding: 1.25rem; text-align: center; color: #25D366;"><i class="fas fa-check"></i></td>
+            <td style="padding: 1.25rem; text-align: center; color: #25D366;"><i class="fas fa-check"></i></td>
+            <td style="padding: 1.25rem; text-align: center; color: #25D366;"><i class="fas fa-check"></i></td>
+            <td style="padding: 1.25rem; text-align: center; color: #25D366;"><i class="fas fa-check"></i></td>
+            <td style="padding: 1.25rem; text-align: center; color: #25D366;"><i class="fas fa-check"></i></td>
+            <td style="padding: 1.25rem; text-align: center; color: #25D366;"><i class="fas fa-check"></i></td>
+            <td style="padding: 1.25rem; text-align: center; color: #25D366;"><i class="fas fa-check"></i></td>
           </tr>
-          <tr style="border-bottom: 1px solid rgba(97, 225, 255, 0.1);">
-            <td style="padding: 1rem; color: var(--text-muted);">Monthly Bonus</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 10K</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 25K</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 50K</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 100K</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 150K</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 250K</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 400K</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 600K</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 1M</td>
-          </tr>
-          <tr style="border-bottom: 1px solid rgba(97, 225, 255, 0.1);">
-            <td style="padding: 1rem; color: var(--text-muted);">Admin Chat</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--error);">✗</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--error);">✗</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--error);">✗</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+          <tr style="border-bottom: 1px solid rgba(97,225,255,0.1);">
+            <td style="padding: 1.25rem; color: var(--text-muted); font-weight: 600;">Drop Multiplier</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">1x</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">1x</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">1x</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">2x</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">2x</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">3x</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">5x</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">10x</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary);">∞</td>
           </tr>
           <tr>
-            <td style="padding: 1rem; color: var(--text-muted);">Drop Multiplier</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">1x</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">1x</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">1x</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">1x</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">2x</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">3x</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">5x</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">10x</td>
-            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">∞</td>
+            <td style="padding: 1.25rem; color: var(--text-muted); font-weight: 600;">Monthly Bonus</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary); font-size: 0.9rem;">Rp 5K</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary); font-size: 0.9rem;">Rp 8K</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary); font-size: 0.9rem;">Rp 12K</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary); font-size: 0.9rem;">Rp 20K</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary); font-size: 0.9rem;">Rp 30K</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary); font-size: 0.9rem;">Rp 45K</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary); font-size: 0.9rem;">Rp 70K</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary); font-size: 0.9rem;">Rp 120K</td>
+            <td style="padding: 1.25rem; text-align: center; color: var(--primary); font-size: 0.9rem;">Rp 200K</td>
           </tr>
         </tbody>
       </table>
@@ -316,3 +309,65 @@
     </div>
   </div>
 </section>
+
+<style>
+  .rank-card {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  <?php foreach (array_keys($ranks) as $index): ?>
+    .rank-card:nth-child(<?php echo $index + 1; ?>) {
+      animation-delay: <?php echo $index * 0.08; ?>s;
+    }
+  <?php endforeach; ?>
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .rank-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(97,225,255,0.4) !important;
+    background: rgba(26,31,58,0.85) !important;
+    box-shadow: 0 20px 50px rgba(97,225,255,0.15);
+  }
+
+  .rank-card.premium-rank {
+    border-color: rgba(139,92,246,0.3) !important;
+    background: linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(26,31,58,0.7) 100%) !important;
+  }
+
+  .rank-card.premium-rank:hover {
+    border-color: rgba(139,92,246,0.5) !important;
+    background: linear-gradient(135deg, rgba(139,92,246,0.12) 0%, rgba(26,31,58,0.85) 100%) !important;
+    box-shadow: 0 0 30px rgba(139,92,246,0.2), 0 20px 50px rgba(139,92,246,0.1);
+  }
+
+  a[href*="wa.me"]:hover {
+    transform: translateY(-2px) !important;
+    border-color: rgba(37,211,102,0.6) !important;
+    background: rgba(37,211,102,0.2) !important;
+    box-shadow: 0 8px 20px rgba(37,211,102,0.2) !important;
+  }
+
+  a[href*="dsc.gg"]:hover {
+    transform: translateY(-2px) !important;
+    border-color: rgba(88,101,242,0.6) !important;
+    background: rgba(88,101,242,0.2) !important;
+    box-shadow: 0 8px 20px rgba(88,101,242,0.2) !important;
+  }
+
+  @media (max-width: 768px) {
+    .rank-card {
+      padding: 1.5rem !important;
+    }
+  }
+</style>

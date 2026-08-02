@@ -52,152 +52,149 @@ $ranks = [
         'id' => 1,
         'name' => 'VIP',
         'color' => '#61E1FF',
-        'price' => 'Rp 50.000',
-        'featured' => false,
+        'price' => 'Rp 25.000',
+        'popular' => false,
+        'premium' => false,
         'features' => [
             'Color Chat',
-            '/hat command',
             '2x Homes',
             'Custom Prefix',
             'Particle Effects',
-            'Monthly Bonus: Rp 10.000'
+            'Monthly Bonus: Rp 5.000'
         ]
     ],
     [
         'id' => 2,
         'name' => 'VIP+',
         'color' => '#00D4FF',
-        'price' => 'Rp 100.000',
-        'featured' => false,
+        'price' => 'Rp 40.000',
+        'popular' => false,
+        'premium' => false,
         'features' => [
-            '/hat command',
+            'Color Chat & Suffix',
             '4x Homes',
-            'Custom Suffix',
-            '/fly command in Hub',
-            'Advanced Particles',
+            '/hat Command',
+            '/fly in Hub',
             'Pet Companion',
-            'Monthly Bonus: Rp 25.000',
-            'Custom Title Color'
+            'Monthly Bonus: Rp 8.000'
         ]
     ],
     [
         'id' => 3,
         'name' => 'MVP',
         'color' => '#0099FF',
-        'price' => 'Rp 150.000',
-        'featured' => false,
+        'price' => 'Rp 60.000',
+        'popular' => false,
+        'premium' => false,
         'features' => [
-            '/fly command (Survival)',
+            'All VIP+ Features',
             '6x Homes',
-            'Custom Skin Support',
-            'Pet Commands',
-            'Custom Cape',
+            '/fly in Survival',
             'Priority Queue',
-            'Monthly Bonus: Rp 50.000',
-            'VIP Chat Access'
+            'Special Titles',
+            'Monthly Bonus: Rp 12.000'
         ]
     ],
     [
         'id' => 4,
         'name' => 'MVP+',
         'color' => '#5B21B6',
-        'price' => 'Rp 200.000',
-        'featured' => true,
+        'price' => 'Rp 85.000',
+        'popular' => true,
+        'premium' => false,
         'features' => [
-            'Unlimited /fly command',
+            'All MVP Features',
             '8x Homes',
-            'Custom Emotes',
+            'Unlimited /fly',
             'Admin Chat Access',
-            'Exclusive Items Pack',
-            'VIP Events Access',
-            'Monthly Bonus: Rp 100.000',
-            'Premium Support',
-            'Custom Nickname'
+            'Exclusive Cosmetics',
+            '2x Drop Chance',
+            'Monthly Bonus: Rp 20.000'
         ]
     ],
     [
         'id' => 5,
         'name' => 'Elite',
         'color' => '#DC2626',
-        'price' => 'Rp 250.000',
-        'featured' => false,
+        'price' => 'Rp 110.000',
+        'popular' => false,
+        'premium' => false,
         'features' => [
             'All MVP+ Features',
             '10x Homes',
-            'Custom Prefix & Suffix',
+            'Custom Emotes',
             'Double Drop Chance',
-            'Special Title Rank',
-            'Monthly Bonus: Rp 150.000',
-            'Premium Cosmetics',
-            'Direct Staff Support'
+            'Special Badge',
+            'Staff Support',
+            'Monthly Bonus: Rp 30.000'
         ]
     ],
     [
         'id' => 6,
         'name' => 'Elite+',
         'color' => '#F59E0B',
-        'price' => 'Rp 350.000',
-        'featured' => false,
+        'price' => 'Rp 140.000',
+        'popular' => false,
+        'premium' => false,
         'features' => [
             'All Elite Features',
             'Unlimited Homes',
-            'Custom Command Alias',
             'Triple Drop Chance',
             'Exclusive Cosmetics Pack',
-            'Monthly Bonus: Rp 250.000',
+            'VIP Channel Access',
             'Private Events',
-            'VIP Channel Access'
+            'Monthly Bonus: Rp 45.000'
         ]
     ],
     [
         'id' => 7,
         'name' => 'Legends',
         'color' => '#10B981',
-        'price' => 'Rp 450.000',
-        'featured' => true,
+        'price' => 'Rp 180.000',
+        'popular' => true,
+        'premium' => false,
         'features' => [
             'All Elite+ Features',
-            'Unlimited Everything',
-            'Custom Command Suite',
             '5x Drop Multiplier',
-            'Exclusive Legend Badge',
-            'Monthly Bonus: Rp 400.000',
-            'Legendary Events',
-            'Personal Manager'
+            'Legendary Badge',
+            'Event Creation',
+            'Personal Manager',
+            'Legendary Status',
+            'Monthly Bonus: Rp 70.000'
         ]
     ],
     [
         'id' => 8,
         'name' => 'Ryzoria',
         'color' => '#8B5CF6',
-        'price' => 'Rp 600.000',
-        'featured' => false,
+        'price' => 'Rp 250.000',
+        'popular' => false,
+        'premium' => true,
         'features' => [
             'All Legends Features',
-            'Lifetime Perks',
-            'Custom Game Balance',
             '10x Drop Multiplier',
             'Server Admin Status',
-            'Monthly Bonus: Rp 600.000',
+            'Custom Balance',
+            'Lifetime Perks',
             'Event Creation Power',
-            'Exclusive Private Server'
+            'Monthly Bonus: Rp 120.000'
         ]
     ],
     [
         'id' => 9,
         'name' => 'Ryzoria+',
         'color' => '#EC4899',
-        'price' => 'Rp 800.000',
-        'featured' => false,
+        'price' => 'Rp 350.000',
+        'popular' => false,
+        'premium' => true,
         'features' => [
             'All Ryzoria Features',
-            'Ultimate Status',
-            'Full Server Customization',
-            'Unlimited Drop Multiplier',
             'Co-Owner Status',
-            'Monthly Bonus: Rp 1.000.000',
+            'Unlimited Drop Multiplier',
+            'Full Customization',
             'Revenue Share (5%)',
-            'Custom Content Creation'
+            'Supreme Control',
+            'Monthly Bonus: Rp 200.000'
         ]
     ]
 ];

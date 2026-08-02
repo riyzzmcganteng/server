@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initScrollAnimations();
   initCopyToClipboard();
   initSmoothScroll();
+  initPlayMinecraftButton();
 });
 
 // ============================================
@@ -290,6 +291,87 @@ function initSmoothScroll() {
       }
     });
   });
+}
+
+// ============================================
+// Play Minecraft Button with Device Detection
+// ============================================
+
+function initPlayMinecraftButton() {
+  const playButtons = [
+    document.getElementById('playMinecraftBtn'),
+    document.getElementById('playBtn'),
+    document.getElementById('playBtnMobile')
+  ];
+
+  playButtons.forEach(btn => {
+    if (btn) {
+      btn.addEventListener('click', function() {
+        detectDeviceAndPlay();
+      });
+    }
+  });
+}
+
+function detectDeviceAndPlay() {
+  const userAgent = navigator.userAgent.toLowerCase();
+  
+  // Detect device type
+  const isAndroid = /android/i.test(userAgent);
+  const isIPhone = /iphone|ipod|ipad/i.test(userAgent);
+  const isMobile = isAndroid || isIPhone;
+  
+  if (isMobile) {
+    // Mobile/Tablet device - try to open Minecraft Bedrock
+    const minecraftBedrock = 'minecraft://';
+    const minecraftDownload = 'https://www.minecraft.net/en-us/download';
+    
+    try {
+      // Try to open Minecraft app using the protocol
+      const checkTime = Date.now();
+      window.location.href = minecraftBedrock;
+      
+      // If app doesn't open within 2 seconds, redirect to download page
+      setTimeout(() => {
+        if (Date.now() - checkTime < 2500) {
+          showToast('📱 Opening Minecraft Bedrock...', 'info');
+        }
+      }, 1000);
+      
+      // Fallback to download page after 2 seconds
+      setTimeout(() => {
+        if (Date.now() - checkTime > 2000) {
+          window.location.href = minecraftDownload;
+        }
+      }, 2100);
+    } catch (e) {
+      window.location.href = minecraftDownload;
+    }
+  } else {
+    // Desktop device - try to open Minecraft Launcher
+    const minecraftLauncher = 'minecraft://';
+    const minecraftDownload = 'https://launcher.mojang.com/download';
+    
+    try {
+      const checkTime = Date.now();
+      window.location.href = minecraftLauncher;
+      
+      setTimeout(() => {
+        if (Date.now() - checkTime < 2500) {
+          showToast('🎮 Opening Minecraft Launcher...', 'info');
+        }
+      }, 1000);
+      
+      // Fallback to launcher download after 2 seconds
+      setTimeout(() => {
+        if (Date.now() - checkTime > 2000) {
+          window.location.href = minecraftDownload;
+        }
+      }, 2100);
+    } catch (e) {
+      window.location.href = minecraftDownload;
+    }
+  }
 }
 
 // ============================================

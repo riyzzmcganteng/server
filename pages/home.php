@@ -10,8 +10,11 @@
       </h1>
 
       <div class="hero-actions" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
-        <a href="/?page=server" class="btn btn-primary" style="animation: fadeInUp 0.8s ease-in-out 0.1s both;">
-          <i class="fas fa-server"></i> Join Server
+        <button id="playMinecraftBtn" class="btn btn-primary" style="animation: fadeInUp 0.8s ease-in-out 0.1s both; cursor: pointer; background: linear-gradient(135deg, rgba(97,225,255,0.3) 0%, rgba(0,153,255,0.2) 100%); border: 1px solid rgba(97,225,255,0.4); backdrop-filter: blur(10px);">
+          <i class="fas fa-gamepad"></i> Play Minecraft
+        </button>
+        <a href="/?page=server" class="btn btn-primary" style="animation: fadeInUp 0.8s ease-in-out 0.15s both;">
+          <i class="fas fa-server"></i> Server Info
         </a>
         <a href="<?php echo DISCORD_LINK; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="animation: fadeInUp 0.8s ease-in-out 0.2s both;">
           <i class="fab fa-discord"></i> Join Discord

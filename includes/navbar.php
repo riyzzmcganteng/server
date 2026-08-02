@@ -8,18 +8,18 @@
       </a>
     </div>
 
-    <!-- Desktop Menu -->
+    <!-- Menu Desktop -->
     <ul class="nav-menu desktop-menu">
-      <li><a href="/" class="nav-link <?php echo $current_page === 'home' ? 'active' : ''; ?>">Home</a></li>
-      <li><a href="/?page=server" class="nav-link <?php echo $current_page === 'server' ? 'active' : ''; ?>">Server Info</a></li>
-      <li><a href="/?page=ranks" class="nav-link <?php echo $current_page === 'ranks' ? 'active' : ''; ?>">Rank Store</a></li>
-      <li><a href="/?page=community" class="nav-link <?php echo $current_page === 'community' ? 'active' : ''; ?>">Community</a></li>
+      <li><a href="/" class="nav-link <?php echo $current_page === 'home' ? 'active' : ''; ?>">Beranda</a></li>
+      <li><a href="/?page=server" class="nav-link <?php echo $current_page === 'server' ? 'active' : ''; ?>">Server</a></li>
+      <li><a href="/?page=ranks" class="nav-link <?php echo $current_page === 'ranks' ? 'active' : ''; ?>">Toko Rank</a></li>
+      <li><a href="/?page=community" class="nav-link <?php echo $current_page === 'community' ? 'active' : ''; ?>">Komunitas</a></li>
     </ul>
 
-    <!-- Social Icons & Play Button -->
+    <!-- Ikon Sosial & Tombol Mainkan -->
     <div class="social-icons">
       <button id="playBtn" class="btn btn-primary" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.2rem; font-size: 0.95rem; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; white-space: nowrap;">
-        <i class="fas fa-gamepad"></i> Play
+        <i class="fas fa-gamepad"></i> Mainkan
       </button>
       <a class="social-btn discord" href="<?php echo DISCORD_LINK; ?>" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Discord">
         <i class="fab fa-discord"></i>
@@ -39,13 +39,13 @@
     </div>
   </div>
 
-  <!-- Mobile Menu -->
+  <!-- Menu Seluler -->
   <ul class="nav-menu mobile-menu">
-    <li><button id="playBtnMobile" class="btn btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.7rem 1.2rem; font-size: 0.95rem; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; margin: 0 0 1rem 0;"><i class="fas fa-gamepad"></i> Play Minecraft</button></li>
-    <li><a href="/" class="nav-link <?php echo $current_page === 'home' ? 'active' : ''; ?>">Home</a></li>
-    <li><a href="/?page=server" class="nav-link <?php echo $current_page === 'server' ? 'active' : ''; ?>">Server Info</a></li>
-    <li><a href="/?page=ranks" class="nav-link <?php echo $current_page === 'ranks' ? 'active' : ''; ?>">Rank Store</a></li>
-    <li><a href="/?page=community" class="nav-link <?php echo $current_page === 'community' ? 'active' : ''; ?>">Community</a></li>
+    <li><button id="playBtnMobile" class="btn btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.7rem 1.2rem; font-size: 0.95rem; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; margin: 0 0 1rem 0;"><i class="fas fa-gamepad"></i> Mainkan Minecraft</button></li>
+    <li><a href="/" class="nav-link <?php echo $current_page === 'home' ? 'active' : ''; ?>">Beranda</a></li>
+    <li><a href="/?page=server" class="nav-link <?php echo $current_page === 'server' ? 'active' : ''; ?>">Server</a></li>
+    <li><a href="/?page=ranks" class="nav-link <?php echo $current_page === 'ranks' ? 'active' : ''; ?>">Toko Rank</a></li>
+    <li><a href="/?page=community" class="nav-link <?php echo $current_page === 'community' ? 'active' : ''; ?>">Komunitas</a></li>
     <div class="mobile-social-icons">
       <a class="social-btn discord" href="<?php echo DISCORD_LINK; ?>" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Discord">
         <i class="fab fa-discord"></i>

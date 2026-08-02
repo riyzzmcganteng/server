@@ -74,39 +74,192 @@ function initScrollAnimations() {
 }
 
 // ============================================
-// Copy to Clipboard
+// Copy to Clipboard with Toast Notifications
 // ============================================
 
-function initCopyToClipboard() {
-  const copyButtons = document.querySelectorAll('[data-copy]');
+function showToast(message, type = 'success') {
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.innerHTML = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: ${type === 'success' ? 'rgba(37, 211, 102, 0.95)' : 'rgba(239, 68, 68, 0.95)'};
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    animation: slideInUp 0.3s ease;
+    max-width: 300px;
+  `;
+  
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.style.animation = 'slideOutDown 0.3s ease';
+    setTimeout(() => toast.remove(), 300);
+  }, 2500);
+}
 
+function copyToClipboard(text) {
+  return new Promise((resolve, reject) => {
+    // Try Clipboard API first (modern browsers)
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text)
+        .then(() => resolve(true))
+        .catch(() => reject(false));
+    } else {
+      // Fallback for older browsers or non-secure context
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.cssText = `
+        position: fixed;
+        left: -9999px;
+        top: -9999px;
+        opacity: 0;
+        pointer-events: none;
+      `;
+      document.body.appendChild(textArea);
+      
+      try {
+        textArea.select();
+        document.execCommand('copy');
+        textArea.remove();
+        resolve(true);
+      } catch (err) {
+        textArea.remove();
+        reject(false);
+      }
+    }
+  });
+}
+
+function initCopyToClipboard() {
+  // Handle Java IP copy button
+  const javaBtn = document.querySelector('.copy-java-btn');
+  if (javaBtn) {
+    javaBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const text = 'ryzoriasmp.my.id';
+      const originalHTML = this.innerHTML;
+      
+      copyToClipboard(text)
+        .then(() => {
+          showToast('✅ Java IP copied!', 'success');
+          this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          this.style.borderColor = 'rgba(37, 211, 102, 0.5)';
+          this.style.color = '#25D366';
+          
+          setTimeout(() => {
+            this.innerHTML = originalHTML;
+            this.style.borderColor = '';
+            this.style.color = '';
+          }, 2000);
+        })
+        .catch(() => {
+          showToast('❌ Failed to copy. Please copy manually.', 'error');
+        });
+    });
+  }
+
+  // Handle Bedrock IP:Port copy button
+  const bedrockBtn = document.querySelector('.copy-bedrock-btn');
+  if (bedrockBtn) {
+    bedrockBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const text = 'ryzoriasmp.my.id:25632';
+      const originalHTML = this.innerHTML;
+      
+      copyToClipboard(text)
+        .then(() => {
+          showToast('✅ Bedrock IP copied!', 'success');
+          this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          this.style.borderColor = 'rgba(37, 211, 102, 0.5)';
+          this.style.color = '#25D366';
+          
+          setTimeout(() => {
+            this.innerHTML = originalHTML;
+            this.style.borderColor = '';
+            this.style.color = '';
+          }, 2000);
+        })
+        .catch(() => {
+          showToast('❌ Failed to copy. Please copy manually.', 'error');
+        });
+    });
+  }
+
+  // Handle generic data-copy buttons
+  const copyButtons = document.querySelectorAll('[data-copy]');
   copyButtons.forEach((button) => {
     button.addEventListener('click', function (e) {
       e.preventDefault();
       const text = this.getAttribute('data-copy');
       const feedback = this.getAttribute('data-feedback') || 'Copied!';
+      const originalText = button.textContent;
 
-      // Copy to clipboard
-      navigator.clipboard.writeText(text).then(
-        function () {
-          // Show feedback
-          const originalText = button.textContent;
+      copyToClipboard(text)
+        .then(() => {
           button.textContent = feedback;
           button.style.borderColor = 'rgba(37, 211, 102, 0.5)';
           button.style.color = '#25D366';
 
-          setTimeout(function () {
+          setTimeout(() => {
             button.textContent = originalText;
             button.style.borderColor = '';
             button.style.color = '';
           }, 2000);
-        },
-        function () {
-          console.error('Failed to copy to clipboard');
-        }
-      );
+        })
+        .catch(() => {
+          showToast('❌ Failed to copy. Please copy manually.', 'error');
+        });
     });
   });
+}
+
+// Add slide animations to document if not already present
+if (!document.querySelector('style[data-toast-animations]')) {
+  const style = document.createElement('style');
+  style.setAttribute('data-toast-animations', 'true');
+  style.textContent = `
+    @keyframes slideInUp {
+      from {
+        transform: translateY(100px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes slideOutDown {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(100px);
+        opacity: 0;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .toast {
+        bottom: 1rem !important;
+        right: 1rem !important;
+        left: 1rem !important;
+        max-width: none !important;
+      }
+    }
+  `;
+  document.head.appendChild(style);
 }
 
 // ============================================

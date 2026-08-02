@@ -81,55 +81,90 @@
       ">
         <thead>
           <tr style="background: rgba(97, 225, 255, 0.1); border-bottom: 1px solid rgba(97, 225, 255, 0.15);">
-            <th style="padding: 1rem; text-align: left; color: var(--primary); font-weight: 700;">Feature</th>
-            <th style="padding: 1rem; text-align: center; color: #61E1FF;">VIP</th>
-            <th style="padding: 1rem; text-align: center; color: #00D4FF;">VIP+</th>
-            <th style="padding: 1rem; text-align: center; color: #0099FF;">Premium</th>
-            <th style="padding: 1rem; text-align: center; color: #0066FF;">Elite</th>
+            <th style="padding: 1rem; text-align: left; color: var(--primary); font-weight: 700; min-width: 150px;">Feature</th>
+            <th style="padding: 1rem; text-align: center; color: #61E1FF; font-size: 0.875rem;">VIP</th>
+            <th style="padding: 1rem; text-align: center; color: #00D4FF; font-size: 0.875rem;">VIP+</th>
+            <th style="padding: 1rem; text-align: center; color: #0099FF; font-size: 0.875rem;">MVP</th>
+            <th style="padding: 1rem; text-align: center; color: #5B21B6; font-size: 0.875rem; font-weight: 700;">MVP+</th>
+            <th style="padding: 1rem; text-align: center; color: #DC2626; font-size: 0.875rem;">Elite</th>
+            <th style="padding: 1rem; text-align: center; color: #F59E0B; font-size: 0.875rem;">Elite+</th>
+            <th style="padding: 1rem; text-align: center; color: #10B981; font-size: 0.875rem; font-weight: 700;">Legends</th>
+            <th style="padding: 1rem; text-align: center; color: #8B5CF6; font-size: 0.875rem;">Ryzoria</th>
+            <th style="padding: 1rem; text-align: center; color: #EC4899; font-size: 0.875rem;">Ryzoria+</th>
           </tr>
         </thead>
         <tbody>
           <tr style="border-bottom: 1px solid rgba(97, 225, 255, 0.1);">
             <td style="padding: 1rem; color: var(--text-muted);">Color Chat</td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-          </tr>
-          <tr style="border-bottom: 1px solid rgba(97, 225, 255, 0.1);">
-            <td style="padding: 1rem; color: var(--text-muted);">/hat Command</td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-          </tr>
-          <tr style="border-bottom: 1px solid rgba(97, 225, 255, 0.1);">
-            <td style="padding: 1rem; color: var(--text-muted);">Homes</td>
-            <td style="padding: 1rem; text-align: center; color: var(--primary);">2</td>
-            <td style="padding: 1rem; text-align: center; color: var(--primary);">4</td>
-            <td style="padding: 1rem; text-align: center; color: var(--primary);">6</td>
-            <td style="padding: 1rem; text-align: center; color: var(--primary);">∞</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
           </tr>
           <tr style="border-bottom: 1px solid rgba(97, 225, 255, 0.1);">
             <td style="padding: 1rem; color: var(--text-muted);">/fly Command</td>
-            <td style="padding: 1rem; text-align: center; color: var(--error);">✗</td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--error);">✗</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
           </tr>
           <tr style="border-bottom: 1px solid rgba(97, 225, 255, 0.1);">
-            <td style="padding: 1rem; color: var(--text-muted);">Pets & Particles</td>
-            <td style="padding: 1rem; text-align: center; color: var(--error);">✗</td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 1rem; color: var(--text-muted);">Homes</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">2</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">4</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">6</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">8</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">10</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">∞</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">∞</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">∞</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">∞</td>
+          </tr>
+          <tr style="border-bottom: 1px solid rgba(97, 225, 255, 0.1);">
+            <td style="padding: 1rem; color: var(--text-muted);">Monthly Bonus</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 10K</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 25K</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 50K</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 100K</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 150K</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 250K</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 400K</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 600K</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary); font-size: 0.75rem;">Rp 1M</td>
+          </tr>
+          <tr style="border-bottom: 1px solid rgba(97, 225, 255, 0.1);">
+            <td style="padding: 1rem; color: var(--text-muted);">Admin Chat</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--error);">✗</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--error);">✗</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--error);">✗</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
           </tr>
           <tr>
-            <td style="padding: 1rem; color: var(--text-muted);">Priority Queue</td>
-            <td style="padding: 1rem; text-align: center; color: var(--error);">✗</td>
-            <td style="padding: 1rem; text-align: center; color: var(--error);">✗</td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
-            <td style="padding: 1rem; text-align: center; color: var(--success);"><i class="fas fa-check"></i></td>
+            <td style="padding: 1rem; color: var(--text-muted);">Drop Multiplier</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">1x</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">1x</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">1x</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">1x</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">2x</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">3x</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">5x</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">10x</td>
+            <td style="padding: 0.75rem; text-align: center; color: var(--primary);">∞</td>
           </tr>
         </tbody>
       </table>

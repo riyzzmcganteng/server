@@ -32,9 +32,9 @@
             Server IP
           </div>
           <div style="font-size: 1.5rem; color: var(--primary); font-family: 'Courier New', monospace; word-break: break-all; margin-bottom: 1rem; font-weight: 700;">
-            <?php echo SERVER_JAVA_IP; ?>
+            ryzoriasmp.my.id
           </div>
-          <button class="btn btn-primary" data-copy="<?php echo SERVER_JAVA_IP; ?>" data-feedback="IP Copied!" style="width: 100%;">
+          <button class="btn btn-primary copy-java-btn" style="width: 100%;">
             <i class="fas fa-copy"></i> Copy IP
           </button>
         </div>
@@ -60,19 +60,19 @@
             Connection Details
           </div>
           <div style="margin-bottom: 1rem;">
-            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;">Host</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;">IP</div>
             <div style="font-size: 1.25rem; color: var(--accent-dark); font-family: 'Courier New', monospace; word-break: break-all; font-weight: 700;">
-              <?php echo SERVER_JAVA_IP; ?>
+              ryzoriasmp.my.id
             </div>
           </div>
-          <div>
+          <div style="margin-bottom: 1.5rem;">
             <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;">Port</div>
             <div style="font-size: 1.5rem; color: var(--accent-dark); font-family: 'Courier New', monospace; font-weight: 700;">
-              <?php echo SERVER_BEDROCK_PORT; ?>
+              25632
             </div>
           </div>
-          <button class="btn btn-primary" data-copy="<?php echo SERVER_BEDROCK_PORT; ?>" data-feedback="Port Copied!" style="width: 100%; margin-top: 1rem;">
-            <i class="fas fa-copy"></i> Copy Port
+          <button class="btn btn-primary copy-bedrock-btn" style="width: 100%;">
+            <i class="fas fa-copy"></i> Copy IP:Port
           </button>
         </div>
 

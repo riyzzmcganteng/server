@@ -26,6 +26,7 @@ require_once 'includes/config.php';
   <link rel="stylesheet" href="css/ranks.css" />
   <link rel="stylesheet" href="css/animation.css" />
   <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/ai-chat.css" />
 
   <!-- Scroll to Top Button CSS -->
   <style>
@@ -95,10 +96,36 @@ require_once 'includes/config.php';
     <i class="fas fa-arrow-up"></i>
   </button>
 
+  <!-- Ryzoria AI Chat Button -->
+  <button id="aiChatBtn" title="Buka Ryzoria AI">
+    <i class="fas fa-robot"></i>
+  </button>
+
+  <!-- Ryzoria AI Chat Modal -->
+  <div id="aiChatModal">
+    <div id="aiChatHeader">
+      <h3>🤖 Ryzoria AI</h3>
+      <button id="aiChatCloseBtn" title="Tutup">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div id="aiChatMessages"></div>
+    <div id="aiChatInputArea">
+      <textarea id="aiChatInput" placeholder="Tanyakan apa saja..." rows="1"></textarea>
+      <button id="aiChatSendBtn" title="Kirim">
+        <i class="fas fa-paper-plane"></i> Kirim
+      </button>
+      <button id="aiChatClearBtn" title="Hapus Chat">
+        <i class="fas fa-trash"></i>
+      </button>
+    </div>
+  </div>
+
   <!-- JavaScript Files -->
   <script src="js/smooth-scroll.js"></script>
   <script src="js/navbar.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/ai-chat.js"></script>
 </body>
 
 </html>

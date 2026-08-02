@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Rank Store - Ryzoria SMP</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1729 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .ranks-hero {
+      background: linear-gradient(135deg, rgba(97,225,255,0.15) 0%, rgba(0,153,255,0.08) 100%);
+      padding: 80px 20px;
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ranks-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%2361E1FF" fill-opacity="0.05"><path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/></g></g></svg>');
+      opacity: 0.3;
+    }
+
+    .ranks-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #61E1FF 0%, #0099FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 2;
+    }
+
+    .ranks-hero p {
+      color: #a0aec0;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .ranks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+      padding: 0 20px;
+    }
+
+    .rank-card {
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(97,225,255,0.2);
+      border-radius: 20px;
+      background: rgba(26,31,58,0.7);
+      padding: 30px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      animation: fadeInUp 0.6s ease-out forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rank-card:nth-child(1) { animation-delay: 0.0s; }
+    .rank-card:nth-child(2) { animation-delay: 0.08s; }
+    .rank-card:nth-child(3) { animation-delay: 0.16s; }
+    .rank-card:nth-child(4) { animation-delay: 0.24s; }
+    .rank-card:nth-child(5) { animation-delay: 0.32s; }
+    .rank-card:nth-child(6) { animation-delay: 0.4s; }
+    .rank-card:nth-child(7) { animation-delay: 0.48s; }
+    .rank-card:nth-child(8) { animation-delay: 0.56s; }
+    .rank-card:nth-child(9) { animation-delay: 0.64s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .rank-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(97,225,255,0.4);
+      background: rgba(26,31,58,0.85);
+      box-shadow: 0 20px 50px rgba(97,225,255,0.15);
+    }
+
+    .rank-card.premium {
+      border-color: rgba(139,92,246,0.3);
+      background: linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(26,31,58,0.7) 100%);
+    }
+
+    .rank-card.premium:hover {
+      border-color: rgba(139,92,246,0.5);
+      background: linear-gradient(135deg, rgba(139,92,246,0.12) 0%, rgba(26,31,58,0.85) 100%);
+      box-shadow: 0 0 30px rgba(139,92,246,0.2), 0 20px 50px rgba(139,92,246,0.1);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, rgba(97,225,255,0.3) 0%, rgba(0,212,255,0.2) 100%);
+      border: 1px solid rgba(97,225,255,0.5);
+      border-radius: 50px;
+      width: fit-content;
+      margin-bottom: 16px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #61E1FF;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      animation: pulse 2s infinite;
+    }
+
+    .badge.premium {
+      background: linear-gradient(135deg, rgba(139,92,246,0.3) 0%, rgba(236,72,153,0.2) 100%);
+      border-color: rgba(139,92,246,0.5);
+      color: #8B5CF6;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .rank-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .rank-icon {
+      font-size: 2rem;
+    }
+
+    .rank-name {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .rank-number {
+      font-size: 0.875rem;
+      color: #a0aec0;
+      margin-top: 4px;
+    }
+
+    .rank-price {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 20px 0;
+      color: #61E1FF;
+    }
+
+    .rank-price.vip { color: #61E1FF; }
+    .rank-price.vipplus { color: #00D4FF; }
+    .rank-price.mvp { color: #0099FF; }
+    .rank-price.mvpplus { color: #5B21B6; }
+    .rank-price.elite { color: #DC2626; }
+    .rank-price.eliteplus { color: #F59E0B; }
+    .rank-price.legends { color: #10B981; }
+    .rank-price.ryzoria { color: #8B5CF6; }
+    .rank-price.ryzoriaplus { color: #EC4899; }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      flex-grow: 1;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      color: #a0aec0;
+      font-size: 0.95rem;
+    }
+
+    .features-list li::before {
+      content: '✓';
+      color: #61E1FF;
+      font-weight: 700;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .purchase-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .buy-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 12px 20px;
+      border: 1px solid;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: #fff;
+      background: transparent;
+    }
+
+    .buy-whatsapp {
+      background: rgba(37,211,102,0.15);
+      border-color: rgba(37,211,102,0.4);
+      color: #25D366;
+    }
+
+    .buy-whatsapp:hover {
+      background: rgba(37,211,102,0.25);
+      border-color: rgba(37,211,102,0.7);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37,211,102,0.2);
+    }
+
+    .buy-discord {
+      background: rgba(88,101,242,0.15);
+      border-color: rgba(88,101,242,0.4);
+      color: #5865F2;
+    }
+
+    .buy-discord:hover {
+      background: rgba(88,101,242,0.25);
+      border-color: rgba(88,101,242,0.7);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(88,101,242,0.2);
+    }
+
+    .support-note {
+      margin-top: 20px;
+      padding: 14px;
+      background: rgba(97,225,255,0.08);
+      border-left: 3px solid #61E1FF;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: #a0aec0;
+    }
+
+    @media (max-width: 768px) {
+      .ranks-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rank-card {
+        padding: 20px;
+      }
+
+      .ranks-hero {
+        padding: 60px 20px;
+        margin-bottom: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="ranks-hero">
+    <div class="container">
+      <h1>Premium Rank Store</h1>
+      <p>Unlock exclusive perks, support the server, and join the elite Ryzoria SMP community</p>
+    </div>
+  </section>
+
+  <!-- Ranks Grid -->
+  <div class="container">
+    <div class="ranks-grid">
+      <!-- VIP -->
+      <div class="rank-card">
+        <div class="rank-header">
+          <div class="rank-icon">💎</div>
+          <div>
+            <h3 class="rank-name">VIP</h3>
+            <div class="rank-number">Rank 1 of 9</div>
+          </div>
+        </div>
+        <div class="rank-price vip">Rp25.000</div>
+        <ul class="features-list">
+          <li>/fly command</li>
+          <li>3 Homes</li>
+          <li>/hat command</li>
+          <li>Colored Chat</li>
+          <li>Priority Queue</li>
+          <li>VIP Kit</li>
+          <li>Workbench Anywhere</li>
+        </ul>
+        <div class="purchase-buttons">
+          <a href="https://wa.me/6285602052384" target="_blank" rel="noopener noreferrer" class="buy-btn buy-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer" class="buy-btn buy-discord">
+            <i class="fab fa-discord"></i> Discord Ticket
+          </a>
+        </div>
+        <div class="support-note">Need help? Purchase via WhatsApp or Discord Ticket.</div>
+      </div>
+
+      <!-- VIP+ -->
+      <div class="rank-card">
+        <div class="rank-header">
+          <div class="rank-icon">💎</div>
+          <div>
+            <h3 class="rank-name">VIP+</h3>
+            <div class="rank-number">Rank 2 of 9</div>
+          </div>
+        </div>
+        <div class="rank-price vipplus">Rp40.000</div>
+        <ul class="features-list">
+          <li>Everything in VIP</li>
+          <li>5 Homes</li>
+          <li>/enderchest command</li>
+          <li>Better VIP Kit</li>
+          <li>2 Player Vaults</li>
+          <li>More Auction Slots</li>
+        </ul>
+        <div class="purchase-buttons">
+          <a href="https://wa.me/6285602052384" target="_blank" rel="noopener noreferrer" class="buy-btn buy-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer" class="buy-btn buy-discord">
+            <i class="fab fa-discord"></i> Discord Ticket
+          </a>
+        </div>
+        <div class="support-note">Need help? Purchase via WhatsApp or Discord Ticket.</div>
+      </div>
+
+      <!-- MVP -->
+      <div class="rank-card">
+        <div class="rank-header">
+          <div class="rank-icon">👑</div>
+          <div>
+            <h3 class="rank-name">MVP</h3>
+            <div class="rank-number">Rank 3 of 9</div>
+          </div>
+        </div>
+        <div class="rank-price mvp">Rp60.000</div>
+        <ul class="features-list">
+          <li>Everything in VIP+</li>
+          <li>7 Homes</li>
+          <li>Better Daily Rewards</li>
+          <li>MVP Kit</li>
+          <li>4 Player Vaults</li>
+          <li>Nickname Color</li>
+          <li>More Auction Slots</li>
+        </ul>
+        <div class="purchase-buttons">
+          <a href="https://wa.me/6285602052384" target="_blank" rel="noopener noreferrer" class="buy-btn buy-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer" class="buy-btn buy-discord">
+            <i class="fab fa-discord"></i> Discord Ticket
+          </a>
+        </div>
+        <div class="support-note">Need help? Purchase via WhatsApp or Discord Ticket.</div>
+      </div>
+
+      <!-- MVP+ -->
+      <div class="rank-card">
+        <div class="badge">⭐ Most Popular</div>
+        <div class="rank-header">
+          <div class="rank-icon">👑</div>
+          <div>
+            <h3 class="rank-name">MVP+</h3>
+            <div class="rank-number">Rank 4 of 9</div>
+          </div>
+        </div>
+        <div class="rank-price mvpplus">Rp85.000</div>
+        <ul class="features-list">
+          <li>Everything in MVP</li>
+          <li>10 Homes</li>
+          <li>Premium Kit</li>
+          <li>6 Player Vaults</li>
+          <li>Exclusive Cosmetics</li>
+          <li>Exclusive Particles</li>
+          <li>Better Daily Rewards</li>
+          <li>Highest Auction Slots</li>
+        </ul>
+        <div class="purchase-buttons">
+          <a href="https://wa.me/6285602052384" target="_blank" rel="noopener noreferrer" class="buy-btn buy-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer" class="buy-btn buy-discord">
+            <i class="fab fa-discord"></i> Discord Ticket
+          </a>
+        </div>
+        <div class="support-note">Need help? Purchase via WhatsApp or Discord Ticket.</div>
+      </div>
+
+      <!-- Elite -->
+      <div class="rank-card">
+        <div class="rank-header">
+          <div class="rank-icon">⚔️</div>
+          <div>
+            <h3 class="rank-name">Elite</h3>
+            <div class="rank-number">Rank 5 of 9</div>
+          </div>
+        </div>
+        <div class="rank-price elite">Rp110.000</div>
+        <ul class="features-list">
+          <li>Everything in MVP+</li>
+          <li>12 Homes</li>
+          <li>Elite Kit</li>
+          <li>8 Player Vaults</li>
+          <li>Elite Prefix</li>
+          <li>More Cosmetics</li>
+        </ul>
+        <div class="purchase-buttons">
+          <a href="https://wa.me/6285602052384" target="_blank" rel="noopener noreferrer" class="buy-btn buy-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer" class="buy-btn buy-discord">
+            <i class="fab fa-discord"></i> Discord Ticket
+          </a>
+        </div>
+        <div class="support-note">Need help? Purchase via WhatsApp or Discord Ticket.</div>
+      </div>
+
+      <!-- Elite+ -->
+      <div class="rank-card">
+        <div class="rank-header">
+          <div class="rank-icon">⚔️</div>
+          <div>
+            <h3 class="rank-name">Elite+</h3>
+            <div class="rank-number">Rank 6 of 9</div>
+          </div>
+        </div>
+        <div class="rank-price eliteplus">Rp140.000</div>
+        <ul class="features-list">
+          <li>Everything in Elite</li>
+          <li>15 Homes</li>
+          <li>Better Elite Kit</li>
+          <li>10 Player Vaults</li>
+          <li>Exclusive Join Effect</li>
+          <li>Premium Chat Tag</li>
+        </ul>
+        <div class="purchase-buttons">
+          <a href="https://wa.me/6285602052384" target="_blank" rel="noopener noreferrer" class="buy-btn buy-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer" class="buy-btn buy-discord">
+            <i class="fab fa-discord"></i> Discord Ticket
+          </a>
+        </div>
+        <div class="support-note">Need help? Purchase via WhatsApp or Discord Ticket.</div>
+      </div>
+
+      <!-- Legends -->
+      <div class="rank-card">
+        <div class="badge">⭐ Most Popular</div>
+        <div class="rank-header">
+          <div class="rank-icon">🏆</div>
+          <div>
+            <h3 class="rank-name">Legends</h3>
+            <div class="rank-number">Rank 7 of 9</div>
+          </div>
+        </div>
+        <div class="rank-price legends">Rp180.000</div>
+        <ul class="features-list">
+          <li>Everything in Elite+</li>
+          <li>20 Homes</li>
+          <li>Legends Kit</li>
+          <li>12 Player Vaults</li>
+          <li>Animated Prefix</li>
+          <li>Exclusive Cosmetics</li>
+          <li>Highest Priority Queue</li>
+        </ul>
+        <div class="purchase-buttons">
+          <a href="https://wa.me/6285602052384" target="_blank" rel="noopener noreferrer" class="buy-btn buy-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer" class="buy-btn buy-discord">
+            <i class="fab fa-discord"></i> Discord Ticket
+          </a>
+        </div>
+        <div class="support-note">Need help? Purchase via WhatsApp or Discord Ticket.</div>
+      </div>
+
+      <!-- Ryzoria -->
+      <div class="rank-card premium">
+        <div class="badge premium">👑 Premium</div>
+        <div class="rank-header">
+          <div class="rank-icon">✨</div>
+          <div>
+            <h3 class="rank-name">Ryzoria</h3>
+            <div class="rank-number">Rank 8 of 9</div>
+          </div>
+        </div>
+        <div class="rank-price ryzoria">Rp250.000</div>
+        <ul class="features-list">
+          <li>Everything in Legends</li>
+          <li>25 Homes</li>
+          <li>Ryzoria Kit</li>
+          <li>15 Player Vaults</li>
+          <li>Unique Prefix</li>
+          <li>Premium Particles</li>
+          <li>Exclusive Join Message</li>
+        </ul>
+        <div class="purchase-buttons">
+          <a href="https://wa.me/6285602052384" target="_blank" rel="noopener noreferrer" class="buy-btn buy-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer" class="buy-btn buy-discord">
+            <i class="fab fa-discord"></i> Discord Ticket
+          </a>
+        </div>
+        <div class="support-note">Need help? Purchase via WhatsApp or Discord Ticket.</div>
+      </div>
+
+      <!-- Ryzoria+ -->
+      <div class="rank-card premium">
+        <div class="badge premium">👑 Ultimate</div>
+        <div class="rank-header">
+          <div class="rank-icon">🌟</div>
+          <div>
+            <h3 class="rank-name">Ryzoria+</h3>
+            <div class="rank-number">Rank 9 of 9</div>
+          </div>
+        </div>
+        <div class="rank-price ryzoriaplus">Rp350.000</div>
+        <ul class="features-list">
+          <li>Everything in Ryzoria</li>
+          <li>Unlimited Homes</li>
+          <li>Unlimited Player Vaults</li>
+          <li>Animated Premium Prefix</li>
+          <li>Exclusive Join Animation</li>
+          <li>Exclusive Chat Tag</li>
+          <li>Future Rank Updates Included</li>
+          <li>Highest Priority</li>
+          <li>Ultimate Cosmetic Effects</li>
+        </ul>
+        <div class="purchase-buttons">
+          <a href="https://wa.me/6285602052384" target="_blank" rel="noopener noreferrer" class="buy-btn buy-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer" class="buy-btn buy-discord">
+            <i class="fab fa-discord"></i> Discord Ticket
+          </a>
+        </div>
+        <div class="support-note">Need help? Purchase via WhatsApp or Discord Ticket.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Smooth page transitions
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '1';
+    });
+
+    // Button interactions
+    const buttons = document.querySelectorAll('.buy-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 100);
+      });
+    });
+  </script>
+</body>
+</html>

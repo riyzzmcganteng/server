@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ryzoria SMP - Premium Minecraft survival server with modern features and an amazing community. Join now!" />
+  <meta name="theme-color" content="#0a0e27" />
+  <title>Ryzoria SMP | Premium Minecraft Server</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/ranks.css" />
+  <link rel="stylesheet" href="css/animation.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/ai-chat.css" />
+  <style>
+    #scrollTopBtn {
+      position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
+      border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--accent-dark) 100%);
+      color: var(--background); border: none; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; font-size: 1.5rem;
+      opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 999;
+      box-shadow: 0 8px 20px rgba(97, 225, 255, 0.3);
+    }
+    #scrollTopBtn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(97, 225, 255, 0.4); }
+    @media (max-width: 480px) { #scrollTopBtn { width: 45px; height: 45px; bottom: 20px; right: 20px; font-size: 1.25rem; } }
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-logo">
+      <a href="/"><span class="logo-text">RYZORIA</span><span class="logo-subtext">SMP</span></a>
+    </div>
+    <ul class="nav-menu desktop-menu">
+      <li><a href="/" class="nav-link active">Home</a></li>
+      <li><a href="/server.html" class="nav-link ">Server Info</a></li>
+      <li><a href="/ranks.html" class="nav-link ">Rank Store</a></li>
+      <li><a href="/community.html" class="nav-link ">Community</a></li>
+    </ul>
+    <div class="social-icons">
+      <a class="social-btn discord" href="https://dsc.gg/ryzoria" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+        <i class="fab fa-discord"></i><span>Discord</span>
+      </a>
+      <a class="social-btn whatsapp" href="https://chat.whatsapp.com/HNOoQBDjCwpJDSoOh1gfG7" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
+      </a>
+    </div>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+  <ul class="nav-menu mobile-menu">
+    <li><a href="/" class="nav-link active">Home</a></li>
+    <li><a href="/server.html" class="nav-link ">Server Info</a></li>
+    <li><a href="/ranks.html" class="nav-link ">Rank Store</a></li>
+    <li><a href="/community.html" class="nav-link ">Community</a></li>
+    <div class="mobile-social-icons">
+      <a class="social-btn discord" href="https://dsc.gg/ryzoria" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i><span>Discord</span></a>
+      <a class="social-btn whatsapp" href="https://chat.whatsapp.com/HNOoQBDjCwpJDSoOh1gfG7" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+    </div>
+  </ul>
+</nav>
+    <main><!-- ============================================
+     HOME PAGE
+     ============================================ -->
+
+<section class="hero section" id="hero">
+  <div class="container">
+    <div class="hero-content" style="text-align: center; animation: fadeInUp 0.8s ease-in-out;">
+      <h1 class="gradient-text" style="font-size: clamp(2rem, 8vw, 4rem); margin-bottom: 2rem; font-weight: 800; letter-spacing: -1px;">
+        BERTAHAN. BANGUN. DOMINASI.
+      </h1>
+
+      <div class="hero-actions" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+        <button id="playMinecraftBtn" class="btn btn-primary" style="animation: fadeInUp 0.8s ease-in-out 0.1s both; cursor: pointer; background: linear-gradient(135deg, rgba(97,225,255,0.3) 0%, rgba(0,153,255,0.2) 100%); border: 1px solid rgba(97,225,255,0.4); backdrop-filter: blur(10px);">
+          <i class="fas fa-gamepad"></i> Mainkan Minecraft
+        </button>
+        <a href="/?page=server" class="btn btn-primary" style="animation: fadeInUp 0.8s ease-in-out 0.15s both;">
+          <i class="fas fa-server"></i> Informasi Server
+        </a>
+        <a href="<?php echo DISCORD_LINK; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="animation: fadeInUp 0.8s ease-in-out 0.2s both;">
+          <i class="fab fa-discord"></i> Gabung Discord
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Stats -->
+<section class="stats section" style="background: linear-gradient(180deg, rgba(97,225,255,0.05) 0%, rgba(97,225,255,0) 100%); padding: 3rem 0;">
+  <div class="container">
+    <div class="grid-4">
+      <div class="stats-card animate-fade-in-up">
+        <div class="stat-number">1000+</div>
+        <div class="stat-label">Pemain Aktif</div>
+      </div>
+      <div class="stats-card animate-fade-in-up">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">Tahun Online</div>
+      </div>
+      <div class="stats-card animate-fade-in-up">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Waktu Aktif Server</div>
+      </div>
+      <div class="stats-card animate-fade-in-up">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Komunitas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Informasi Koneksi Server -->
+<section class="connection section" id="ip">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <h2 class="gradient-text" style="margin-bottom: 1rem;">Terhubung Sekarang</h2>
+      <p style="color: var(--text-muted); font-size: var(--text-lg);">Pilih platform Anda dan mulai bermain di Ryzoria SMP</p>
+    </div>
+
+    <div class="grid-2">
+      <!-- Java Edition -->
+      <div class="info-card animate-fade-in-up hover-lift">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary);">
+          <i class="fas fa-cube"></i>
+        </div>
+        <h3 style="color: var(--primary); margin-bottom: 1rem;">Java Edition</h3>
+        <div class="info-label">IP Server</div>
+        <div class="info-value" style="font-size: 1.5rem; word-break: break-all; margin-bottom: 1.5rem;">
+          <?php echo SERVER_JAVA_IP; ?>
+        </div>
+        <button class="btn btn-primary" data-copy="<?php echo SERVER_JAVA_IP; ?>" data-feedback="✅ IP berhasil disalin!">
+          <i class="fas fa-copy"></i> Salin IP
+        </button>
+      </div>
+
+      <!-- Bedrock Edition -->
+      <div class="info-card animate-fade-in-up hover-lift">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent-dark);">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h3 style="color: var(--accent-dark); margin-bottom: 1rem;">Bedrock Edition</h3>
+        <div class="info-label">Port Server</div>
+        <div class="info-value">
+          <?php echo SERVER_BEDROCK_PORT; ?>
+        </div>
+        <p style="font-size: var(--text-xs); color: var(--text-muted); margin-top: 1rem; margin-bottom: 1.5rem;">
+          Host: <?php echo SERVER_JAVA_IP; ?>
+        </p>
+        <button class="btn btn-primary" data-copy="<?php echo SERVER_BEDROCK_PORT; ?>" data-feedback="✅ Port berhasil disalin!">
+          <i class="fas fa-copy"></i> Salin Port
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bagian Fitur -->
+<section class="features section" style="background: linear-gradient(180deg, rgba(97,225,255,0.05) 0%, rgba(97,225,255,0) 100%);">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <h2 class="gradient-text" style="margin-bottom: 1rem;">Mengapa Memilih Ryzoria?</h2>
+      <p style="color: var(--text-muted); font-size: var(--text-lg);">Rasakan pengalaman survival Minecraft premium dengan fitur unik kami</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="card animate-fade-in-up">
+        <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">
+          <i class="fas fa-tachometer-alt"></i>
+        </div>
+        <h3 style="color: var(--primary);">Performa Tinggi</h3>
+        <p>Server super cepat dengan lag minimal dan pengalaman bermain optimal untuk semua pemain.</p>
+      </div>
+
+      <div class="card animate-fade-in-up">
+        <div style="font-size: 2.5rem; color: var(--accent-dark); margin-bottom: 1rem;">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3 style="color: var(--accent-dark);">Komunitas Aktif</h3>
+        <p>Bergabunglah dengan ribuan pemain dan jadilah bagian dari komunitas yang luar biasa dan supportif.</p>
+      </div>
+
+      <div class="card animate-fade-in-up">
+        <div style="font-size: 2.5rem; color: var(--success); margin-bottom: 1rem;">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3 style="color: var(--success);">Aman & Terlindungi</h3>
+        <p>Sistem anti-cheat canggih dan backup rutin memastikan dunia Anda selalu aman.</p>
+      </div>
+
+      <div class="card animate-fade-in-up">
+        <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">
+          <i class="fas fa-crown"></i>
+        </div>
+        <h3 style="color: var(--primary);">Sistem Rank</h3>
+        <p>Buka fitur eksklusif dan keuntungan dengan sistem toko rank komprehensif kami.</p>
+      </div>
+
+      <div class="card animate-fade-in-up">
+        <div style="font-size: 2.5rem; color: var(--accent-dark); margin-bottom: 1rem;">
+          <i class="fas fa-cogs"></i>
+        </div>
+        <h3 style="color: var(--accent-dark);">Fitur Kustom</h3>
+        <p>Nikmati plugin unik dan modifikasi kustom yang meningkatkan pengalaman bermain.</p>
+      </div>
+
+      <div class="card animate-fade-in-up">
+        <div style="font-size: 2.5rem; color: var(--success); margin-bottom: 1rem;">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <h3 style="color: var(--success);">Acara Rutin</h3>
+        <p>Ikuti acara dan kompetisi menarik dengan hadiah-hadiah menakjubkan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bagian CTA -->
+<section class="cta section">
+  <div class="container">
+    <div class="cta-card" style="text-align: center;">
+      <h2 style="color: var(--primary); margin-bottom: 1rem;">Siap untuk Bermain?</h2>
+      <p style="color: var(--text-muted); font-size: var(--text-lg); margin-bottom: 2rem;">
+        Bergabunglah dengan komunitas kami dan rasakan server SMP Minecraft terbaik
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/?page=server" class="btn btn-primary">
+          <i class="fas fa-play"></i> Mainkan Sekarang
+        </a>
+        <a href="/?page=ranks" class="btn btn-secondary">
+          <i class="fas fa-star"></i> Lihat Rank
+        </a>
+        <a href="<?php echo DISCORD_LINK; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          <i class="fab fa-discord"></i> Discord
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+    <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>About Ryzoria SMP</h3>
+        <p>Premium Minecraft SMP server with modern features, smooth gameplay, and an amazing community. Join us today and experience the ultimate survival experience.</p>
+        <div class="footer-social">
+          <a href="https://dsc.gg/ryzoria" target="_blank"><i class="fab fa-discord"></i></a>
+          <a href="https://chat.whatsapp.com/HNOoQBDjCwpJDSoOh1gfG7" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/server.html">Server Info</a></li>
+          <li><a href="/ranks.html">Rank Store</a></li>
+          <li><a href="/community.html">Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Server Info</h3>
+        <ul>
+          <li><strong>Java IP:</strong> play.ryzoriasmp.my.id</li>
+          <li><strong>Bedrock:</strong> Port 25632</li>
+          <li><strong>Version:</strong> Latest</li>
+          <li><strong>Mode:</strong> Survival SMP</li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Community</h3>
+        <p>Join our community for updates, events, and support. Connect with fellow players on Discord and WhatsApp.</p>
+        <div class="footer-buttons">
+          <a href="https://dsc.gg/ryzoria" target="_blank" class="footer-btn discord-btn">Join Discord</a>
+          <a href="https://chat.whatsapp.com/HNOoQBDjCwpJDSoOh1gfG7" target="_blank" class="footer-btn whatsapp-btn">Join WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ryzoria SMP. All rights reserved. | Powered by PHP & Node.js</p>
+    </div>
+  </div>
+</footer>
+    <button id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+    
+    <!-- Ryzoria AI Chat Button -->
+    <button id="aiChatBtn" title="Buka Ryzoria AI">
+      <i class="fas fa-robot"></i>
+    </button>
+
+    <!-- Ryzoria AI Chat Modal -->
+    <div id="aiChatModal">
+      <div id="aiChatHeader">
+        <h3>🤖 Ryzoria AI</h3>
+        <button id="aiChatCloseBtn" title="Tutup">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div id="aiChatMessages"></div>
+      <div id="aiChatInputArea">
+        <textarea id="aiChatInput" placeholder="Tanyakan apa saja..." rows="1"></textarea>
+        <button id="aiChatSendBtn" title="Kirim">
+          <i class="fas fa-paper-plane"></i> Kirim
+        </button>
+        <button id="aiChatClearBtn" title="Hapus Chat">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </div>
+    
+    <script src="js/smooth-scroll.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/ai-chat.js"></script>
+  </body>
+</html>
